@@ -51,7 +51,7 @@ class Publication extends \yii\db\ActiveRecord
     public function scenarios(){
         $scenarios = parent::scenarios();
         $scenarios['create'] = 
-            ['titre', 'description', 'contenu', 'date_pub', 'file', 'id_user', 'id_client']; //Scenario Values only Accepted
+            ['titre', 'description', 'contenu', 'date_pub', 'file', 'id_user', 'id_client']; //Scenario Values only Acceptedsdqsd
         return $scenarios;
     }
 
