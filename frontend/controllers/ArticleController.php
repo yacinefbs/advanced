@@ -4,15 +4,41 @@ namespace frontend\controllers;
 use frontend\models\Article;
 
 
+use yii\helpers\Url;
+use yii\helpers\Json;
 class ArticleController extends \yii\web\Controller
 {
-
+public $layout='main1';
 	public $enableCsrfValidation = false;
 
-    public function actionIndex()
+    public function actionIndex($key)
     {
-    	echo 'This is test'; exit;
-        return $this->render('index');
+    	$post = file_get_contents("http://localhost".Url::to(['article/list-article']));
+    	$articles = json_decode($post, true);
+
+    	// var_dump($articles);
+    	// exit;
+
+    	// if($token==md5('yacine')){
+    		//var_dump($articles);
+	    	if(!empty($articles['data'])){
+
+	    			return $this->render('index',[
+		            'articles' => $articles,
+		        ]);
+
+	    	}else{
+
+	    		return $this->render('index-0',[]);
+	    		
+	    	}
+	        
+    	//}
+    	// else{
+    	// 	var_dump(array(['Token'=>'Incorrecte']));
+    	// 	exit;
+    	// }
+
     }
 
     public function actionCreateArticle(){
@@ -35,18 +61,25 @@ class ArticleController extends \yii\web\Controller
 
 	}
 
-	public function actionListArticle($page, $key){
+	public function actionListArticle($page=1, $key='ef32927ac29584c2a3250028c2c456d7'){
 		\Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
 		// $article  = Article::find()->all();
 		$minArt = ($page-1)*20;
 		$maxArt = $minArt+20;
-		$article = Article::findBySql('SELECT * FROM Article where publie=1 LIMIT '.$minArt.','.$maxArt.'')->all();
-
+		$article = Article::findBySql('SELECT * FROM Article where publie=1 LIMIT '.$minArt.',20')->all();
+		
+		$nbr_article = count($article);
+		$totalPages = ceil($nbr_article/20);
 		$token_key = md5('yacine');
 
 		if($key==$token_key){
 			if(count($article)>0){
-					return array('status'=>true, 'data'=>$article);
+					return array('status'=>true, 'data'=>$article,
+						['totalCount'=> $nbr_article,
+					        // 'pageCount'=> $totalPages,
+					        'currentPage'=> $page,
+					        'perPage'=> 20]
+					     );
 			}
 			else{
 		    	return array('status'=>false, 'data'=>'Aucun articles trouvés.');
@@ -66,7 +99,7 @@ class ArticleController extends \yii\web\Controller
 		// echo $minArt.'   '.$maxArt;
 
 		$articles = Article::findBySql('SELECT * FROM Article art, art_cat a, categorie c where
-        a.id_cat=c.id_cat and art.id_art=a.id_art and c.categorie="'.$cat.'" LIMIT '.$minArt.','.$maxArt.'')->all();
+        a.id_cat=c.id_cat and art.id_art=a.id_art and c.categorie="'.$cat.'" LIMIT '.$minArt.',20')->all();
 
 		$nbr_article = count($articles);
 		$totalPages = ceil($nbr_article/20);
@@ -83,7 +116,7 @@ class ArticleController extends \yii\web\Controller
 			if(count($articles)>0){
 				return array('status'=>true, 'data'=>$articles, 
 					        ['totalCount'=> $nbr_article,
-					        'pageCount'=> $totalPages,
+					        // 'pageCount'=> $totalPages,
 					        'currentPage'=> $page,
 					        'perPage'=> 20],
 					$tabArtlien

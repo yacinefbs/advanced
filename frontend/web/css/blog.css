@@ -1,0 +1,16 @@
+.header{
+
+	width: 80%;
+	height: 200px;
+}
+
+.items, .listArticle{
+	padding:5px 0;
+
+}
+.listArticle .items .item-topic {
+
+border: #ccc 1px solid ;
+padding:3px;
+
+}
