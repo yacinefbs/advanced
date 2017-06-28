@@ -38,8 +38,11 @@ class EvenementController extends \yii\web\Controller
 		\Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
 		$evenement  = Evenement::find()->all();
 
+
+		$token_key = md5('yacine');
+
 		if(count($evenement)>0){
-			return array('status'=>true, 'data'=>$evenement);
+			return array('status'=>true, 'data'=>$evenement, ['Token_Key'=>$token_key]);
 		}
 		else{
 	    	return array('status'=>false, 'data'=>'No articles found.');
@@ -55,8 +58,10 @@ class EvenementController extends \yii\web\Controller
                 ->where(['id_eve' => $id])
                 ->one();
 
+		$token_key = md5('yacine');
+
 		if(count($evenement)>0){
-			return array('status'=>true, 'data'=>$evenement);
+			return array('status'=>true, 'data'=>$evenement, ['Token_Key'=>$token_key]);
 		}
 		else{
 	    	return array('status'=>false, 'data'=>'No articles found.');

@@ -42,7 +42,7 @@ class Evenement extends \yii\db\ActiveRecord
 
     public function scenarios(){
         $scenarios = parent::scenarios();
-        $scenarios['create'] = ['description', 'date_eve', 'contenu']; //Scenario Values only Accepted
+        $scenarios['create'] = ['description', 'date_eve', 'contenu', 'id_user']; //Scenario Values only Accepted
         return $scenarios;
     }
 

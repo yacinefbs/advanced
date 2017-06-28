@@ -23,7 +23,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-
               
             </div>
             <!-- /.box-header -->

@@ -22,6 +22,7 @@ class PublicationController extends \yii\web\Controller
 		$publication->scenario = Publication::SCENARIO_CREATE;
 		$publication->attributes = \Yii::$app->request->post();
 
+
 		if($publication->validate()){
 			// $publication->id_user = Yii::$app->user->id;
 			$publication->save();
@@ -37,8 +38,10 @@ class PublicationController extends \yii\web\Controller
 		\Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
 		$publication  = Publication::find()->all();
 
+		$token_key = md5('yacine');
+
 		if(count($publication)>0){
-			return array('status'=>true, 'data'=>$publication);
+			return array('status'=>true, 'data'=>$publication, ['Token_Key'=>$token_key]);
 		}
 		else{
 	    	return array('status'=>false, 'data'=>'No publications found.');
@@ -54,8 +57,10 @@ class PublicationController extends \yii\web\Controller
                 ->where(['id_pub' => $id])
                 ->one();
 
+		$token_key = md5('yacine');
+
 		if(count($publication)>0){
-			return array('status'=>true, 'data'=>$publication);
+			return array('status'=>true, 'data'=>$publication, ['Token_Key'=>$token_key]);
 		}
 		else{
 	    	return array('status'=>false, 'data'=>'No publications found.');
