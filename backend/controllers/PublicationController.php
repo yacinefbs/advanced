@@ -80,6 +80,7 @@ class PublicationController extends Controller
      */
     public function actionCreate()
     {
+        
         $model = new Publication();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -91,9 +92,9 @@ class PublicationController extends Controller
                 $model->file = 'uploads/pub/' .$time. '.' .$model->file->extension ;
             }
             $model->id_user=Yii::$app->user->id;
-             $model->save();
+            $model->save();
              
-             return $this->redirect(['view', 'id' => $model->id_pub]);
+            return $this->redirect(['view', 'id' => $model->id_pub]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -144,6 +145,12 @@ class PublicationController extends Controller
      */
     public function actionDelete($id)
     {
+
+        $publication = Publication::findOne($id);
+        if(isset($publication->file)){
+            unlink($publication->file);
+        }
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

@@ -24,7 +24,7 @@ class ClientController extends \yii\web\Controller
 
 		if($client->validate()){
 			$client->save();
-			return array('status'=>true, 'data'=> 'article created successfully');
+			return array('status'=>true, 'data'=> 'Le client a été ajouté avec succès.');
 		}
 		else{
 			return array('status'=>false, 'data'=>$client->getErrors());
@@ -36,11 +36,13 @@ class ClientController extends \yii\web\Controller
 		\Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
 		$client  = Client::find()->all();
 
+		$token_key = md5('yacine');
+
 		if(count($client)>0){
-			return array('status'=>true, 'data'=>$client);
+			return array('status'=>true, 'data'=>$client, ['Token_Key'=>$token_key]);
 		}
 		else{
-	    	return array('status'=>false, 'data'=>'No articles found.');
+	    	return array('status'=>false, 'data'=>'Aucun clients trouvés.');
 		}
 	}
 
@@ -53,11 +55,13 @@ class ClientController extends \yii\web\Controller
                 ->where(['id_clt' => $id])
                 ->one();
 
+		$token_key = md5('yacine');
+
 		if(count($client)>0){
-			return array('status'=>true, 'data'=>$client);
+			return array('status'=>true, 'data'=>$client, ['Token_Key'=>$token_key]);
 		}
 		else{
-	    	return array('status'=>false, 'data'=>'No articles found.');
+	    	return array('status'=>false, 'data'=>'Aucun clients trouvés.');
 		}
 	}
 

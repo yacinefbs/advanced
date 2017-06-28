@@ -169,6 +169,12 @@ class ArticleController extends Controller
      */
     public function actionDelete($id)
     {
+        $article = Article::findOne($id);
+
+        if(isset($article->file)){
+            unlink($article->file);
+        }
+
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);

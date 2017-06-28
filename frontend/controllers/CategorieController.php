@@ -24,7 +24,7 @@ class CategorieController extends \yii\web\Controller
 
 		if($categorie->validate()){
 			$categorie->save();
-			return array('status'=>true, 'data'=> 'article created successfully');
+			return array('status'=>true, 'data'=> 'La catégorie a été ajouté avec succès.');
 		}
 		else{
 			return array('status'=>false, 'data'=>$categorie->getErrors());
@@ -36,28 +36,39 @@ class CategorieController extends \yii\web\Controller
 		\Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
 		$categorie  = Categorie::find()->all();
 
+
+		$tabCat =[];
+		foreach ($categorie as $key => $value) {
+			$val = array('id' => $value['id_cat'], 'categorie' => $value['categorie'], 'url' => 'article/article-by-categorie&cat='.$value['categorie']);
+			array_push($tabCat, $val);
+		}
+		array_push($tabCat, 'Evenement');
+
+
+		$token_key = md5('yacine');
+
 		if(count($categorie)>0){
-			return array('status'=>true, 'data'=>$categorie);
+			return array('status'=>true, $tabCat, ['Token_Key'=>$token_key]);
 		}
 		else{
-	    	return array('status'=>false, 'data'=>'No articles found.');
+	    	return array('status'=>false, 'data'=>'Aucune catégories trouvées.');
 		}
 	}
 
 	public function actionListCategorieById($id){
 		\Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
-		// $article  = Article::find()->all();
-		// echo "here"; exi
-		// $id=1;
+
 		$categorie = Categorie::find()
                 ->where(['id_cat' => $id])
                 ->one();
 
+		$token_key = md5('yacine');
+
 		if(count($categorie)>0){
-			return array('status'=>true, 'data'=>$categorie);
+			return array('status'=>true, 'data'=>$categorie, ['Token_Key'=>$token_key]);
 		}
 		else{
-	    	return array('status'=>false, 'data'=>'No articles found.');
+	    	return array('status'=>false, 'data'=>'Aucune catégories trouvées.');
 		}
 	}
 
