@@ -33,16 +33,16 @@ class PublicationController extends Controller
             ],
 
             'access' => [
-            'class' => AccessControl::className(),
-            'only' => ['create','update'],
-            'rules' => [
-                // allow authenticated users
-                [
-                    'allow' => true,
-                    'roles' => ['@'],
+                'class' => AccessControl::className(),
+                'only' => ['create','update', 'delete', 'index'],
+                'rules' => [
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                      // everything else is denied by default
                 ],
-                  // everything else is denied by default
-            ],
         ],
         ];
     }

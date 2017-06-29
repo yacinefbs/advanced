@@ -11,7 +11,8 @@ use yii\filters\VerbFilter;
 use yii\web\UploadedFile;
 use backend\models\ArtCat;
 use backend\models\Categorie; 
-use yii\helpers\ArrayHelper; 
+use yii\helpers\ArrayHelper;
+use yii\filters\AccessControl; 
 
 
 /**
@@ -31,6 +32,18 @@ class ArticleController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create','update', 'delete', 'index'],
+                'rules' => [
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                      // everything else is denied by default
                 ],
             ],
         ];
@@ -81,6 +94,9 @@ class ArticleController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
       
+        // var_dump($model);
+        // die();
+
         //get the instance of the upload file
         $imageName = $model->titre;
         $model->file = UploadedFile::getInstance($model, 'file');

@@ -28,6 +28,18 @@ class ClientController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create','update', 'delete', 'index'],
+                'rules' => [
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                      // everything else is denied by default
+                ],
+            ],
         ];
     }
 
