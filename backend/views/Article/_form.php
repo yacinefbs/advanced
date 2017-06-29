@@ -32,7 +32,7 @@ use backend\models\Categorie;
             <div class="col-md-12">
               
              
-            <?php $form = ActiveForm::begin(); ?>
+            <?php $form = ActiveForm::begin(['options'=>['enctype'=>'multipart/form-data']]); ?>
 
                 <?= $form->field($model, 'titre')->textInput(['maxlength' => true]) ?>
 
@@ -58,6 +58,11 @@ use backend\models\Categorie;
                     
                 <?php 
                 }else{ 
+                  ?>
+                  s
+                  <?php 
+                  // print_r($model2);
+                  // die();
                     foreach ($modelCats as $key => $value) {
                         $categorie = Categorie::find()
                           ->where(['categorie' => $value])
@@ -67,9 +72,11 @@ use backend\models\Categorie;
                                   ->checkbox([
                                     'label'=>$categorie->categorie,
                                     'value'=>$categorie->id_cat,
-                                    'checked'=>true
-                                  ])
-                                  ->label(false);
+                                    [
+                                      'value' => 'Y',
+                                      'uncheck' => 'N'
+                                    ]
+                                  ]);
                     }      
                 }
 

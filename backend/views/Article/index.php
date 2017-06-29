@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Create Article', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
-    <div class="row" style="width: 95%;">
+    <div class="row" style="width: 100%;">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">

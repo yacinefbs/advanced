@@ -86,6 +86,9 @@ class PublicationController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
+            // var_dump($model);
+            // die();
+
             $model->file = UploadedFile::getInstance($model,'file');
              if($model->file){
                 $time = time();
