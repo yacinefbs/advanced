@@ -21,6 +21,7 @@ use Yii;
  */
 class Publication extends \yii\db\ActiveRecord
 {
+    const SCENARIO_CREATE = 'create';
     /**
      * @inheritdoc
      */
@@ -43,6 +44,13 @@ class Publication extends \yii\db\ActiveRecord
             [['id_client'], 'exist', 'skipOnError' => true, 'targetClass' => Client::className(), 'targetAttribute' => ['id_client' => 'id_clt']],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
+    }
+
+    public function scenarios(){
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = 
+            ['titre', 'description', 'contenu', 'date_pub', 'file', 'id_user', 'id_client']; //Scenario Values only Acceptedsdqsd
+        return $scenarios;
     }
 
     /**

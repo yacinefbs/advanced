@@ -12,7 +12,7 @@ use Yii;
  */
 class Categorie extends \yii\db\ActiveRecord
 {
-    const SCENARIO_CREATE = 'create';
+    
     /**
      * @inheritdoc
      */
@@ -32,11 +32,7 @@ class Categorie extends \yii\db\ActiveRecord
         ];
     }
 
-    public function scenarios(){
-        $scenarios = parent::scenarios();
-        $scenarios['create'] = ['categorie']; //Scenario Values only Accepted
-        return $scenarios;
-    }
+    
 
     /**
      * @inheritdoc

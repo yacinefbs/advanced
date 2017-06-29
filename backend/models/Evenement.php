@@ -17,6 +17,7 @@ use Yii;
  */
 class Evenement extends \yii\db\ActiveRecord
 {
+    const SCENARIO_CREATE = 'create';
     /**
      * @inheritdoc
      */
@@ -37,6 +38,12 @@ class Evenement extends \yii\db\ActiveRecord
             [['id_user'], 'integer'],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
+    }
+
+    public function scenarios(){
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = ['description', 'date_eve', 'contenu', 'id_user']; //Scenario Values only Accepted
+        return $scenarios;
     }
 
     /**

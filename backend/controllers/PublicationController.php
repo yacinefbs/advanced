@@ -16,6 +16,7 @@ use yii\web\UploadedFile;
  */
 class PublicationController extends Controller
 {
+    public $enableCsrfValidation = false;
     /**
      * @inheritdoc
      */
@@ -171,4 +172,80 @@ class PublicationController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    //Partie API
+    public function actionCreatePublication(){
+        //echo 'This create employee api'; exit;
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        // return array('status' => true);
+
+        $publication = new Publication();
+        $publication->scenario = Publication::SCENARIO_CREATE;
+        $publication->attributes = \Yii::$app->request->post();
+
+
+        if($publication->validate()){
+            // $publication->id_user = Yii::$app->user->id;
+            $publication->save();
+            return array('status'=>true, 'data'=> 'publication created successfully');
+        }
+        else{
+            return array('status'=>false, 'data'=>$publication->getErrors());
+        }
+
+    }
+
+    public function actionListPublication($page, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        // $publication  = Publication::find()->all();
+        $minPub = ($page-1)*20;
+        $publication = Publication::findBySql('SELECT * FROM Publication LIMIT '.$minPub.',20')->all();
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($publication)>0){
+                return array('status'=>true, 'data'=>$publication);
+            }
+            else{
+                return array('status'=>false, 'data'=>'Aucune publication trouvée.');
+            }
+        }
+        else{
+            return array('status'=>false, 'token' => 'Key invalide');
+        }    
+    }
+
+    public function actionListPublicationById($id, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        // $article  = Article::find()->all();
+        // echo "here"; exi
+        // $id=1;
+        $publication = Publication::find()
+                ->where(['id_pub' => $id])
+                ->one();
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($publication)>0){
+                return array('status'=>true, 'data'=>$publication);
+            }
+            else{
+                return array('status'=>false, 'data'=>'No publications found.');
+            }
+        }
+        else{
+            return array('status'=>false, 'token' => 'Key invalide');
+        }
+    }
+
+    public function actionSupprimerPublicationById($id){
+        $publication = Publication::find()
+                        ->where(['id_pub'=>$id])->one();
+        if($publication){
+            $publication->delete();
+        }
+    }
+
 }
