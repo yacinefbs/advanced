@@ -42,6 +42,9 @@ class ArticleController extends Controller
      */
     public function actionIndex()
     {
+        // echo "base : ".Yii::$app->request->baseUrl.'/uploads/';
+        // die();
+
         $searchModel = new ArticleSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
@@ -81,10 +84,10 @@ class ArticleController extends Controller
         //get the instance of the upload file
         $imageName = $model->titre;
         $model->file = UploadedFile::getInstance($model, 'file');
-        $model->file->saveAs('uploads/'.$imageName.'.'.$model->file->extension);
+        $model->file->saveAs('C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension);
 
         //Save the path in the db column
-        $model->file = 'uploads/'.$imageName.'.'.$model->file->extension;
+        $model->file = 'C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
 
         $model->date_art = date('Y-m-d H:i:s');
         $model->id_user = Yii::$app->user->getId(); 
@@ -123,6 +126,9 @@ class ArticleController extends Controller
      */
     public function actionUpdate($id)
     {
+
+
+
         $model = $this->findModel($id);
         $model2 = ArtCat::findBySql('SELECT c.id_cat, c.categorie FROM art_cat a, categorie c where
         a.id_cat=c.id_cat and a.id_art='.$id)->all();
@@ -135,12 +141,22 @@ class ArticleController extends Controller
             //get the instance of the upload file
             $imageName = $model->titre;
             $model->file = UploadedFile::getInstance($model, 'file');
-            $model->file->saveAs('uploads/'.$imageName.'.'.$model->file->extension);
+            $model->file->saveAs('C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension);
 
             //Save the path in the db column
-            $model->file = 'uploads/'.$imageName.'.'.$model->file->extension;
+            $model->file = 'C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
+
+
 
             $model->date_art = date('Y-m-d H:i:s');
+
+            //Supprimer l'ancienne image
+            $articleAncien = Article::findBySql('SELECT * FROM Article WHERE id_art='.$model->id_art)->one();
+
+            if(isset($articleAncien->file)){
+                    unlink($articleAncien->file);
+            }
+
             $model->save();
 
            // $categoriesASupp = ArtCat::find($model->id_art);
@@ -220,7 +236,7 @@ class ArticleController extends Controller
 
     public function actionListArticle($page, $key){
         \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
-        $articleForCount  = Article::find()->all();
+        $articleForCount  = $articleForCount  = Article::find()->where('publie=1')->all();
         
         $minArt = ($page-1)*20;
         $maxArt = $minArt+20;
@@ -256,16 +272,17 @@ class ArticleController extends Controller
 
     public function actionListArticleByCategorie($cat, $page, $key){
         \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
-
+        
         $minArt = ($page-1)*20;
         $maxArt = $minArt+20;
-
+        $articlesForCount = Article::findBySql('SELECT * FROM Article art, art_cat a, categorie c where
+        a.id_cat=c.id_cat and art.id_art=a.id_art and c.categorie="'.$cat.'" and publie=1 LIMIT '.$minArt.',20')->all();
         // echo $minArt.'   '.$maxArt;
 
         $articles = Article::findBySql('SELECT * FROM Article art, art_cat a, categorie c where
         a.id_cat=c.id_cat and art.id_art=a.id_art and c.categorie="'.$cat.'" LIMIT '.$minArt.',20')->all();
 
-        $nbr_article = count($articles);
+        $nbr_article = count($articlesForCount);
         $totalPages = ceil($nbr_article/20);
 
 
