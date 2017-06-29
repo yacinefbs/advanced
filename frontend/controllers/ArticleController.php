@@ -12,9 +12,11 @@ class ArticleController extends \yii\web\Controller
 	public $enableCsrfValidation = false;
 
 
-    public function actionIndex($page=1,$key)
+    public function actionIndex($page,$key)
     {
-    	$post = file_get_contents("http://localhost/yii/advanced2/backend/web/index.php?r=article/list-article&key=".$key."&page=".$page);
+
+    	$post = file_get_contents(
+    		"http://localhost/yii/advanced2/backend/web/index.php?r=article/list-article&key=".$key."&page=".$page);
     	$articles = json_decode($post, true);
 
 	    	if($articles['status']==true){

@@ -33,16 +33,16 @@ class PublicationController extends Controller
             ],
 
             'access' => [
-            'class' => AccessControl::className(),
-            'only' => ['create','update'],
-            'rules' => [
-                // allow authenticated users
-                [
-                    'allow' => true,
-                    'roles' => ['@'],
+                'class' => AccessControl::className(),
+                'only' => ['create','update', 'delete', 'index'],
+                'rules' => [
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                      // everything else is denied by default
                 ],
-                  // everything else is denied by default
-            ],
         ],
         ];
     }
@@ -85,6 +85,9 @@ class PublicationController extends Controller
         $model = new Publication();
 
         if ($model->load(Yii::$app->request->post())) {
+
+            // var_dump($model);
+            // die();
 
             $model->file = UploadedFile::getInstance($model,'file');
              if($model->file){
