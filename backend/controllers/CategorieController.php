@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class CategorieController extends Controller
 {
+    public $enableCsrfValidation = false;
     /**
      * @inheritdoc
      */
@@ -122,4 +123,93 @@ class CategorieController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    //Partie API
+    
+    public function actionCreateCategorie(){
+        //echo 'This create employee api'; exit;
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        // return array('status' => true);
+
+        $categorie = new Categorie();
+        $categorie->scenario = Categorie::SCENARIO_CREATE;
+        $categorie->attributes = \Yii::$app->request->post();
+
+        if($categorie->validate()){
+            $categorie->save();
+            return array('status'=>true, 'data'=> 'La catégorie a été ajouté avec succès.');
+        }
+        else{
+            return array('status'=>false, 'data'=>$categorie->getErrors());
+        }
+
+    }
+
+    public function actionListCategorie($page, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        
+
+        $minCat = ($page-1)*20;
+        $categorie  = Categorie::findBySql('SELECT * FROM Categorie LIMIT '.$minCat.',20')->all();
+
+
+        $tabCat =[];
+        foreach ($categorie as $key => $value) {
+            $val = array('id' => $value['id_cat'], 'categorie' => $value['categorie'], 'url' => 'article/article-by-categorie&cat='.$value['categorie']);
+            array_push($tabCat, $val);
+        }
+        array_push($tabCat, 'Evenement');
+
+        $nbr_categorie = count($categorie);
+        $totalPages = ceil($nbr_categorie/20);
+
+        if($key==$token_key){
+            if(count($categorie)>0){
+                return array('status'=>true, $tabCat,
+                        ['totalCount'=> $nbr_categorie,
+                        // 'pageCount'=> $totalPages,
+                        'currentPage'=> $page,
+                        'perPage'=> 20
+                    ]
+                    );
+            }
+            else{
+                return array('status'=>false, 'data'=>'Aucune catégories trouvées.');
+            }
+        }
+        else{
+            return array('status'=>false, 'token' => 'Key invalide');
+        }
+    }
+
+    public function actionListCategorieById($id, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+
+        $categorie = Categorie::find()
+                ->where(['id_cat' => $id])
+                ->one();
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($categorie)>0){
+                return array('status'=>true, 'data'=>$categorie);
+            }
+            else{
+                return array('status'=>false, 'data'=>'Aucune catégories trouvées.');
+            }
+        }
+        else{
+            return array('status'=>false, 'token' => 'Key invalide');
+        }
+    }
+
+    public function actionSupprimerCategorieById($id){
+        $categorie = Categorie::find()
+                        ->where(['id_cat'=>$id])->one();
+        if($categorie){
+            $categorie->delete();
+        }
+    }
+
 }

@@ -21,6 +21,8 @@ use Yii;
 class Article extends \yii\db\ActiveRecord
 {
 
+    const SCENARIO_CREATE = 'create';
+
     public $categories=[];
 
     /**
@@ -45,6 +47,12 @@ class Article extends \yii\db\ActiveRecord
             [['file'], 'string', 'max' => 255],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];
+    }
+
+    public function scenarios(){
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = ['titre', 'contenu', 'date_art', 'publie', 'file', 'id_user']; //Scenario Values only Accepted
+        return $scenarios;
     }
 
     /**

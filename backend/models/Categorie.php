@@ -14,6 +14,9 @@ use Yii;
  */
 class Categorie extends \yii\db\ActiveRecord
 {
+
+    const SCENARIO_CREATE = 'create';
+
     /**
      * @inheritdoc
      */
@@ -32,6 +35,12 @@ class Categorie extends \yii\db\ActiveRecord
             [['categorie'], 'string', 'max' => 30],
             [['id_cat'], 'exist', 'skipOnError' => true, 'targetClass' => ArtCat::className(), 'targetAttribute' => ['id_cat' => 'id_cat']],
         ];
+    }
+
+    public function scenarios(){
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = ['categorie']; //Scenario Values only Accepted
+        return $scenarios;
     }
 
     /**

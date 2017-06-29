@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class ClientController extends Controller
 {
+    public $enableCsrfValidation = false;
     /**
      * @inheritdoc
      */
@@ -120,6 +121,81 @@ class ClientController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    //Partie API
+
+    public function actionCreateClient(){
+        //echo 'This create employee api'; exit;
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        // return array('status' => true);
+
+        $client = new Client();
+        $client->scenario = Client::SCENARIO_CREATE;
+        $client->attributes = \Yii::$app->request->post();
+
+        if($client->validate()){
+            $client->save();
+            return array('status'=>true, 'data'=> 'Le client a été ajouté avec succès.');
+        }
+        else{
+            return array('status'=>false, 'data'=>$client->getErrors());
+        }
+
+    }
+
+    public function actionListClient($page, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        // $client  = Client::find()->all();
+
+        $minClt = ($page-1)*20;
+        $client  = Client::findBySql('SELECT * FROM Client LIMIT '.$minClt.',20')->all();
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($client)>0){
+                return array('status'=>true, 'data'=>$client);
+            }
+            else{
+                return array('status'=>false, 'data'=>'Aucun clients trouvés.');
+            }
+        }
+        else{
+            return array('status'=>false, 'token' => 'Key invalide');
+        }
+    }
+
+    public function actionListClientById($id, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        // $article  = Article::find()->all();
+        // echo "here"; exi
+        // $id=1;
+        $client = Client::find()
+                ->where(['id_clt' => $id])
+                ->one();
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($client)>0){
+                return array('status'=>true, 'data'=>$client);
+            }
+            else{
+                return array('status'=>false, 'data'=>'Aucun clients trouvés.');
+            }
+        }
+        else{
+            return array('status'=>false, 'token' => 'Key invalide');
+        }
+    }
+
+    public function actionSupprimerClientById($id){
+        $client = Client::find()
+                        ->where(['id_clt'=>$id])->one();
+        if($client){
+            $client->delete();
         }
     }
 }

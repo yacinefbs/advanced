@@ -14,3 +14,18 @@ border: #ccc 1px solid ;
 padding:3px;
 
 }
+.listArticle .items .item-topic .item-info{
+	padding-left:10px;
+}
+.listArticle .items .item-topic a{
+	text-decoration:none;
+	color:#000;
+}
+.listArticle .items .img-thumbnail{
+	margin: 0;
+
+}
+.listArticle .items .item-topic p{
+	color:#65686B;
+	font-family: 'Open Sans',sans-serif;
+}

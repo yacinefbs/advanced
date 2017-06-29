@@ -15,6 +15,7 @@ use Yii;
  */
 class Client extends \yii\db\ActiveRecord
 {
+    const SCENARIO_CREATE = 'create';
     /**
      * @inheritdoc
      */
@@ -32,6 +33,12 @@ class Client extends \yii\db\ActiveRecord
             [['nom', 'prenom'], 'required'],
             [['nom', 'prenom'], 'string', 'max' => 30],
         ];
+    }
+
+    public function scenarios(){
+        $scenarios = parent::scenarios();
+        $scenarios['create'] = ['nom', 'prenom']; //Scenario Values only Accepted
+        return $scenarios;
     }
 
     /**

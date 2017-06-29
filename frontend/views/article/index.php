@@ -8,7 +8,7 @@ foreach ($articles['data'] as $article) {
 		
 		<div class="item-topic w3-row">
 			<a href="#" class="w3-col m3 l3">
-				<img width="237" height="146" alt="" src=" <?= "http://localhost/yii/advanced2/backend/web/". $article['file'] ?> " class="img-thumbnail">
+				<img  alt="" src=" <?= "http://localhost/yii/advanced2/backend/web/". $article['file'] ?> " class="img-thumbnail">
 			</a>
 			<div class="item-info w3-col m9 l9 w3-bordred">
 				<!-- <h4>
@@ -27,6 +27,7 @@ foreach ($articles['data'] as $article) {
 				 
 				</div>
 				<p><?= $article['contenu'] ?></p>
+				<button class="w3-btn w3-white w3-border w3-right">Lire la suite</button>
 			</div>
 				
 		</div>
