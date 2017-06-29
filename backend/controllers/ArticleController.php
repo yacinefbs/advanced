@@ -227,6 +227,7 @@ class ArticleController extends Controller
         $article = Article::findBySql('SELECT * FROM Article where publie=1 LIMIT '.$minArt.',20')->all();
         
         //créer un fichier json
+
         /*$fp = fopen('C:\wamp\www\yii\advanced2\backend\web\json\results.json', 'w');
         fwrite($fp, json_encode($article));
         fclose($fp);*/

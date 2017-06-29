@@ -45,11 +45,6 @@ class Article extends \yii\db\ActiveRecord
         ];
     }
 
-    public function scenarios(){
-        $scenarios = parent::scenarios();
-        $scenarios['create'] = ['titre', 'contenu', 'date_art', 'publie', 'file', 'id_user']; //Scenario Values only Accepted
-        return $scenarios;
-    }
 
     /**
      * @inheritdoc
