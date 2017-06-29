@@ -220,18 +220,18 @@ class ArticleController extends Controller
 
     public function actionListArticle($page, $key){
         \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
-        // $article  = Article::find()->all();
+        $articleForCount  = Article::find()->all();
+        
         $minArt = ($page-1)*20;
         $maxArt = $minArt+20;
         $article = Article::findBySql('SELECT * FROM Article where publie=1 LIMIT '.$minArt.',20')->all();
         
         //créer un fichier json
-        $fp = fopen('results.json', 'w');
-        fwrite($fp, json_encode($response));
+        $fp = fopen('C:\wamp\www\yii\advanced2\backend\web\json\results.json', 'w');
+        fwrite($fp, json_encode($article));
         fclose($fp);
 
-
-        $nbr_article = count($article);
+        $nbr_article = count($articleForCount);
         $totalPages = ceil($nbr_article/20);
         $token_key = md5('yacine');
 
