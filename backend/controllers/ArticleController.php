@@ -227,9 +227,9 @@ class ArticleController extends Controller
         $article = Article::findBySql('SELECT * FROM Article where publie=1 LIMIT '.$minArt.',20')->all();
         
         //créer un fichier json
-        $fp = fopen('C:\wamp\www\yii\advanced2\backend\web\json\results.json', 'w');
+        /*$fp = fopen('C:\wamp\www\yii\advanced2\backend\web\json\results.json', 'w');
         fwrite($fp, json_encode($article));
-        fclose($fp);
+        fclose($fp);*/
 
         $nbr_article = count($articleForCount);
         $totalPages = ceil($nbr_article/20);
@@ -238,18 +238,18 @@ class ArticleController extends Controller
         if($key==$token_key){
             if(count($article)>0){
                     return array('status'=>true, 'data'=>$article,
-                        ['totalCount'=> $nbr_article,
+                        'info'=>['totalCount'=> $nbr_article,
                             // 'pageCount'=> $totalPages,
                             'currentPage'=> $page,
                             'perPage'=> 20]
                          );
             }
             else{
-                return array('status'=>false, 'data'=>'Aucun article trouvé.');
+                return array('status'=>false, 'message'=>'Aucun article trouvé.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
     }
 
@@ -278,7 +278,7 @@ class ArticleController extends Controller
         if($key==$token_key){
             if(count($articles)>0){
                 return array('status'=>true, 'data'=>$articles, 
-                            ['totalCount'=> $nbr_article,
+                            'info' => ['totalCount'=> $nbr_article,
                             // 'pageCount'=> $totalPages,
                             'currentPage'=> $page,
                             'perPage'=> 20],
@@ -286,11 +286,11 @@ class ArticleController extends Controller
                 );
             }
             else{
-                return array('status'=>false, 'data'=>'Aucun articles trouvés.');
+                return array('status'=>false, 'message'=>'Aucun article trouvé.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
 
     }
@@ -308,14 +308,14 @@ class ArticleController extends Controller
 
         if($key==$token_key){
             if(count($article)>0){
-                return array('status'=>true, 'data'=>$article, ['Token_Key'=>$token_key]);
+                return array('status'=>true, 'data'=>$article);
             }
             else{
-                return array('status'=>false, 'data'=>'Aucun articles trouvés.');
+                return array('status'=>false, 'message'=>'Aucun article trouvé.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
     }
 

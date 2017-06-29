@@ -11,9 +11,9 @@ class ArticleController extends \yii\web\Controller
 	public $layout='main1';
 	public $enableCsrfValidation = false;
 
-    public function actionIndex($key)
+    public function actionIndex($page,$key)
     {
-    	$post = file_get_contents("http://localhost".Url::to(['article/list-article']));
+    	$post = file_get_contents('http://localhost/yii/advanced2/backend/web/index.php?r=article/list-article&key='.$key.'&page='.$page);
     	$articles = json_decode($post, true);
 
 	    	if(!empty($articles['data'])){

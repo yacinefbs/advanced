@@ -159,11 +159,11 @@ class ClientController extends Controller
                 return array('status'=>true, 'data'=>$client);
             }
             else{
-                return array('status'=>false, 'data'=>'Aucun clients trouvés.');
+                return array('status'=>false, 'message'=>'Aucun client trouvé.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
     }
 
@@ -183,11 +183,11 @@ class ClientController extends Controller
                 return array('status'=>true, 'data'=>$client);
             }
             else{
-                return array('status'=>false, 'data'=>'Aucun clients trouvés.');
+                return array('status'=>false, 'message'=>'Aucun client trouvé.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
     }
 

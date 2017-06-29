@@ -154,7 +154,7 @@ class CategorieController extends Controller
 
 
         $tabCat =[];
-        foreach ($categorie as $key => $value) {
+        foreach ($categorie as $key1 => $value) {
             $val = array('id' => $value['id_cat'], 'categorie' => $value['categorie'], 'url' => 'article/article-by-categorie&cat='.$value['categorie']);
             array_push($tabCat, $val);
         }
@@ -162,6 +162,12 @@ class CategorieController extends Controller
 
         $nbr_categorie = count($categorie);
         $totalPages = ceil($nbr_categorie/20);
+
+        $token_key=md5('yacine');
+
+        // print_r('key : '.$key);
+        // print_r('token_key : '.$token_key);
+
 
         if($key==$token_key){
             if(count($categorie)>0){
@@ -174,11 +180,11 @@ class CategorieController extends Controller
                     );
             }
             else{
-                return array('status'=>false, 'data'=>'Aucune catégories trouvées.');
+                return array('status'=>false, 'message'=>'Aucune catégorie trouvée.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
     }
 
@@ -196,11 +202,11 @@ class CategorieController extends Controller
                 return array('status'=>true, 'data'=>$categorie);
             }
             else{
-                return array('status'=>false, 'data'=>'Aucune catégories trouvées.');
+                return array('status'=>false, 'message'=>'Aucune catégorie trouvée.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
     }
 
