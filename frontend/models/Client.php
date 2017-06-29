@@ -36,11 +36,7 @@ class Client extends \yii\db\ActiveRecord
     }
 
 
-    public function scenarios(){
-        $scenarios = parent::scenarios();
-        $scenarios['create'] = ['nom', 'prenom']; //Scenario Values only Accepted
-        return $scenarios;
-    }
+    
 
     /**
      * @inheritdoc

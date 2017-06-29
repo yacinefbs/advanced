@@ -14,6 +14,7 @@ use yii\filters\VerbFilter;
  */
 class EvenementController extends Controller
 {
+    public $enableCsrfValidation = false;
     /**
      * @inheritdoc
      */
@@ -122,6 +123,82 @@ class EvenementController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
+    //Partie API JSON
+    public function actionCreateEvenement(){
+        //echo 'This create employee api'; exit;
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        // return array('status' => true);
+
+        $evenement = new Evenement();
+        $evenement->scenario = Evenement::SCENARIO_CREATE;
+        $evenement->attributes = \Yii::$app->request->post();
+
+        // $evenement->id_user = \Yii::$app->user->id;
+
+        if($evenement->validate()){
+            $evenement->save();
+            return array('status'=>true, 'data'=> 'article created successfully');
+        }
+        else{
+            return array('status'=>false, 'data'=>$evenement->getErrors());
+        }
+
+    }
+
+    public function actionListEvenement($page, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        //$evenement  = Evenement::find()->all();
+        $minEve = ($page-1)*20;
+        $evenement  = Evenement::findBySql('SELECT * FROM Evenement LIMIT '.$minEve.',20')->all();
+
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($evenement)>0){
+                return array('status'=>true, 'data'=>$evenement);
+            }
+            else{
+                return array('status'=>false, 'data'=>'No articles found.');
+            }
+        }
+        else{
+            return array('status'=>false, 'token' => 'Key invalide');
+        }
+    }
+
+    public function actionListEvenementById($id, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        // $article  = Article::find()->all();
+        // echo "here"; exi
+        // $id=1;
+        $evenement = Evenement::find()
+                ->where(['id_eve' => $id])
+                ->one();
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($evenement)>0){
+                return array('status'=>true, 'data'=>$evenement);
+            }
+            else{
+                return array('status'=>false, 'data'=>'No articles found.');
+            }
+        }
+        else{
+            return array('status'=>false, 'token' => 'Key invalide');
+        }
+    }
+
+    public function actionSupprimerEvenementById($id){
+        $evenement = Evenement::find()
+                        ->where(['id_eve'=>$id])->one();
+        if($evenement){
+            $evenement->delete();
         }
     }
 }
