@@ -208,11 +208,11 @@ class PublicationController extends Controller
                 return array('status'=>true, 'data'=>$publication);
             }
             else{
-                return array('status'=>false, 'data'=>'Aucune publication trouvée.');
+                return array('status'=>false, 'message'=>'Aucune publication trouvée.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }    
     }
 
@@ -232,11 +232,11 @@ class PublicationController extends Controller
                 return array('status'=>true, 'data'=>$publication);
             }
             else{
-                return array('status'=>false, 'data'=>'No publications found.');
+                return array('status'=>false, 'message'=>'Aucune publication trouvée.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
     }
 

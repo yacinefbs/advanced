@@ -239,18 +239,18 @@ class ArticleController extends Controller
         if($key==$token_key){
             if(count($article)>0){
                     return array('status'=>true, 'data'=>$article,
-                        ['totalCount'=> $nbr_article,
+                        'info'=>['totalCount'=> $nbr_article,
                             // 'pageCount'=> $totalPages,
                             'currentPage'=> $page,
                             'perPage'=> 20]
                          );
             }
             else{
-                return array('status'=>false, 'data'=>'Aucun article trouvé.');
+                return array('status'=>false, 'message'=>'Aucun article trouvé.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
     }
 
@@ -279,7 +279,7 @@ class ArticleController extends Controller
         if($key==$token_key){
             if(count($articles)>0){
                 return array('status'=>true, 'data'=>$articles, 
-                            ['totalCount'=> $nbr_article,
+                            'info' => ['totalCount'=> $nbr_article,
                             // 'pageCount'=> $totalPages,
                             'currentPage'=> $page,
                             'perPage'=> 20],
@@ -287,11 +287,11 @@ class ArticleController extends Controller
                 );
             }
             else{
-                return array('status'=>false, 'data'=>'Aucun articles trouvés.');
+                return array('status'=>false, 'message'=>'Aucun article trouvé.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
 
     }
@@ -309,14 +309,14 @@ class ArticleController extends Controller
 
         if($key==$token_key){
             if(count($article)>0){
-                return array('status'=>true, 'data'=>$article, ['Token_Key'=>$token_key]);
+                return array('status'=>true, 'data'=>$article);
             }
             else{
-                return array('status'=>false, 'data'=>'Aucun articles trouvés.');
+                return array('status'=>false, 'message'=>'Aucun article trouvé.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
     }
 

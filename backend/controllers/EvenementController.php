@@ -162,11 +162,11 @@ class EvenementController extends Controller
                 return array('status'=>true, 'data'=>$evenement);
             }
             else{
-                return array('status'=>false, 'data'=>'No articles found.');
+                return array('status'=>false, 'message'=>'Aucun événement trouvé.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
     }
 
@@ -186,11 +186,11 @@ class EvenementController extends Controller
                 return array('status'=>true, 'data'=>$evenement);
             }
             else{
-                return array('status'=>false, 'data'=>'No articles found.');
+                return array('status'=>false, 'message'=>'Aucun événement trouvé.');
             }
         }
         else{
-            return array('status'=>false, 'token' => 'Key invalide');
+            return array('status'=>false, 'message' => 'La clé est invalide');
         }
     }
 
