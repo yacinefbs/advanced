@@ -198,6 +198,7 @@ class ArticleController extends Controller
 
             $model->date_art = date('Y-m-d H:i:s');
             $model->save();
+            
 
 
             return $this->redirect(['view', 'id' => $model->id_art]);
