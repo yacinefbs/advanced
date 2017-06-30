@@ -21,7 +21,7 @@ class SiteController extends Controller
     /**
      * @inheritdoc
      */
-    public $layout="mainLTE";
+    public $layout="main1";
     public function behaviors()
     {
         return [
@@ -74,6 +74,10 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->render('index');
+    }
+    public function actionHome()
+    {
+        return $this->render('home');
     }
 
 
