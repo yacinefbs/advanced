@@ -20,7 +20,11 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "2amigos/yii2-date-picker-widget": "~1.0",
         "kartik-v/yii2-widget-datepicker": "@dev",
-        "tuyakhov/yii2-json-api": "*"
+        "tuyakhov/yii2-json-api": "*",
+        "kartik-v/yii2-markdown": "dev-master",
+        "kartik-v/yii2-editable": "@dev",
+        "2amigos/yii2-ckeditor-widget": "^2.1",
+        "maxwen/yii2-ckeditor-widget": "^1.0"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

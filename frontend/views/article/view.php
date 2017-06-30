@@ -14,7 +14,7 @@ $artcl = $article['data'];
 	<img src=" <?= "http://localhost/yii/advanced2/backend/web/". $artcl['file'] ?> " class="w3-round" alt="Norway">
 	<div class="content">
 		<p>
-			<?= Html::encode($artcl['contenu']) ?>
+			<?= $artcl['contenu'] ?>
 		</p>
 	</div>
 </article>

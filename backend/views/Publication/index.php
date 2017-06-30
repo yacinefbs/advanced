@@ -42,8 +42,8 @@ $this->params['breadcrumbs'][] = $this->title;
              'label'=>"Client"
              ],
             'titre',
-            'description:ntext',
-            'contenu:ntext',
+            // 'description:ntext',
+            // 'contenu:ntext',
             'date_pub',
             // 'file:ntext',
 

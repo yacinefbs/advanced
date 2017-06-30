@@ -6,6 +6,7 @@ use kartik\select2\Select2;
 use backend\models\Client;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
+use dosamigos\ckeditor\CKEditor;
 
 
 /* @var $this yii\web\View */
@@ -22,9 +23,19 @@ use kartik\date\DatePicker;
 
             <?= $form->field($model, 'titre')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+            <!-- <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?> -->
+            <?php
+                echo $form->field($model, 'description')->widget(CKEditor::className(), [
+                  'options' => ['rows' => 6],
+                  'preset' => 'basic'
+              ]); ?>
 
-            <?= $form->field($model, 'contenu')->textarea(['rows' => 6]) ?>
+            <!-- <?= $form->field($model, 'contenu')->textarea(['rows' => 6]) ?> -->
+            <?php
+                echo $form->field($model, 'contenu')->widget(CKEditor::className(), [
+                  'options' => ['rows' => 6],
+                  'preset' => 'basic'
+              ]); ?>
 
             <?=  $form->field($model, 'date_pub')->widget(DatePicker::className(),[
 

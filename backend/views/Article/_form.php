@@ -8,6 +8,9 @@ use dosamigos\datepicker\DatePicker;
 use backend\models\Categorie;
 use backend\models\CHtml;
 use backend\models\Test;
+
+
+use dosamigos\ckeditor\CKEditor;
 // use backend\model\CHtml;
 
 /* @var $this yii\web\View */
@@ -38,9 +41,18 @@ use backend\models\Test;
 
                 <?= $form->field($model, 'titre')->textInput(['maxlength' => true]) ?>
 
-                <?= $form->field($model, 'contenu')->textarea(['rows' => 6]) ?>
+                <!-- <?= $form->field($model, 'contenu')->textarea(['rows' => 6]) ?> -->
+                <hr />
+               <?php
+                echo $form->field($model, 'contenu')->widget(CKEditor::className(), [
+                  'options' => ['rows' => 6],
+                  'preset' => 'basic'
+              ]); ?>
 
-                
+               
+
+                <hr />
+                              
                  <?= $form->field($model, 'publie')->dropDownList(
                      array(['1'=>'Oui', '0' => 'Non', '9' => 'Supprimé'])
                  ); 
@@ -60,16 +72,20 @@ use backend\models\Test;
                     
                 <?php 
                 }else{ 
+                    $i=0;
                     foreach ($modelCats as $key => $value) {
                         $categorie = Categorie::find()
                           ->where(['categorie' => $value])
                           ->one(); 
                         // var_dump($categorie);
-                        echo $form->field($model, 'categories[]')
+                        // exit;
+                        echo $form->field($model, 'categories['.$i.']')
                                   ->checkbox([
                                     'label'=>$categorie->categorie,
                                     'value'=>$categorie->id_cat,
+                                    'checked'=>1
                                   ]);
+                                  $i=$i+1;
                     }      
                 }
 
