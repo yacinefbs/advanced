@@ -1,38 +1,44 @@
   <!-- About Card -->
   <div class="w3-card-2 w3-margin-left w3-margin-top">
-  <img src="/w3images/avatar_g.jpg" style="width:100%">
-    <div class="w3-container w3-white">
-      <h4><b>My Name</b></h4>
-      <p>Just me, myself and I, exploring the universe of uknownment. I have a heart of love and a interest of lorem ipsum and mauris neque quam blog. I want to share my world with you.</p>
+  <h2 class="w3-center ">Radio le matin</h2>
+    <div class="w3-container w3-green">
+      <img src="http://localhost/yii/advanced2/frontend/web/matinprem.png" alt=" ">
+      <br /><br />
+      <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un peintre anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte.</p>
     </div>
   </div><hr>
   
   <!-- Posts -->
   <div class="w3-card-2 w3-margin-left">
     <div class="w3-container w3-padding">
-      <h4>Popular Posts</h4>
+      <h4>dernier article</h4>
     </div>
     <ul class="w3-ul w3-hoverable w3-white">
+      
       <li class="w3-padding-16">
-        <img src="/w3images/workshop.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-        <span class="w3-large">Lorem</span><br>
-        <span>Sed mattis nunc</span>
+        <img src="http://localhost/yii/advanced2/backend/web/uploads/S.A.R.%20la%20Princesse%20Lalla%20Asma.jpg" alt="Image" class="w3-left w3-margin-right" style="width:90px">
+        <span class="w3-large">S.A.R. la Princesse Lalla Asma</span>
+        <br>
+        <span>Publier le 2017-06-29</span>
+      </li> 
+        <li class="w3-padding-16">
+        <img src="http://localhost/yii/advanced2/backend/web/uploads/S.A.R.%20la%20Princesse%20Lalla%20Asma.jpg" alt="Image" class="w3-left w3-margin-right" style="width:90px">
+        <span class="w3-large">S.A.R. la Princesse Lalla Asma</span>
+        <br>
+        <span>Publier le 2017-06-29</span>
       </li>
       <li class="w3-padding-16">
-        <img src="/w3images/gondol.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-        <span class="w3-large">Ipsum</span><br>
-        <span>Praes tinci sed</span>
-      </li> 
+        <img src="http://localhost/yii/advanced2/backend/web/uploads/S.A.R.%20la%20Princesse%20Lalla%20Asma.jpg" alt="Image" class="w3-left w3-margin-right" style="width:90px">
+        <span class="w3-large">S.A.R. la Princesse Lalla Asma</span>
+        <br>
+        <span>Publier le 2017-06-29</span>
+      </li>
       <li class="w3-padding-16">
-        <img src="/w3images/skies.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-        <span class="w3-large">Dorum</span><br>
-        <span>Ultricies congue</span>
-      </li>   
-      <li class="w3-padding-16 w3-hide-medium w3-hide-small">
-        <img src="/w3images/rock.jpg" alt="Image" class="w3-left w3-margin-right" style="width:50px">
-        <span class="w3-large">Mingsum</span><br>
-        <span>Lorem ipsum dipsum</span>
-      </li>  
+        <img src="http://localhost/yii/advanced2/backend/web/uploads/S.A.R.%20la%20Princesse%20Lalla%20Asma.jpg" alt="Image" class="w3-left w3-margin-right" style="width:90px">
+        <span class="w3-large">S.A.R. la Princesse Lalla Asma</span>
+        <br>
+        <span>Publier le 2017-06-29</span>
+      </li>
     </ul>
   </div>
   <hr> 

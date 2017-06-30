@@ -6,6 +6,8 @@ use yii\helpers\ArrayHelper;
 use backend\models\User;
 use dosamigos\datepicker\DatePicker;
 use backend\models\Categorie;
+use backend\models\CHtml;
+use backend\models\Test;
 // use backend\model\CHtml;
 
 /* @var $this yii\web\View */
@@ -58,11 +60,6 @@ use backend\models\Categorie;
                     
                 <?php 
                 }else{ 
-                  ?>
-                  s
-                  <?php 
-                  // print_r($model2);
-                  // die();
                     foreach ($modelCats as $key => $value) {
                         $categorie = Categorie::find()
                           ->where(['categorie' => $value])
@@ -72,13 +69,10 @@ use backend\models\Categorie;
                                   ->checkbox([
                                     'label'=>$categorie->categorie,
                                     'value'=>$categorie->id_cat,
-                                    [
-                                      'value' => 'Y',
-                                      'uncheck' => 'N'
-                                    ]
                                   ]);
                     }      
                 }
+
 
                 ?>
                 <div class="form-group">

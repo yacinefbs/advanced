@@ -20,20 +20,20 @@ $this->params['breadcrumbs'][] = $this->title;
     </p>
 
 
-    <div class="row" style="width: 95%;">
-        <div class="col-xs-12">
-          <div class="box">
-            <div class="box-header">
+    <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title"></h3>
 
-              
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body table-responsive no-padding">
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+          </div>
+        </div>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
+            // ['class' => 'yii\grid\SerialColumn'],
 
             'id_pub',
             [
@@ -53,9 +53,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
-        </div>
-      </div>
+          
 </div>

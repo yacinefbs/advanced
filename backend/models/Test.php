@@ -9,11 +9,10 @@ use Yii;
  *
  * @property integer $id
  * @property string $nom
+ * @property string $val
  */
 class Test extends \yii\db\ActiveRecord
 {
-
-    const SCENARIO_CREATE = 'create';
     /**
      * @inheritdoc
      */
@@ -28,17 +27,11 @@ class Test extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nom'], 'required'],
+            [['nom', 'val'], 'required'],
             [['nom'], 'string', 'max' => 200],
+            [['val'], 'string', 'max' => 5],
         ];
     }
-
-    public function scenarios(){
-        $scenarios = parent::scenarios();
-        $scenarios['create'] = ['nom'];
-        return $scenarios;
-    }
-
 
     /**
      * @inheritdoc
@@ -48,6 +41,7 @@ class Test extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'nom' => 'Nom',
+            'val' => 'Val',
         ];
     }
 }
