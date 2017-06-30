@@ -102,11 +102,11 @@ class ArticleController extends Controller
         // if(filesize($model->file)>0){
         $file = \yii\web\UploadedFile::getInstance($model, 'file');
         if($file){
-            $imageName = $model->titre;
+            $imageName = utf8_encode($model->titre);
             $model->file = UploadedFile::getInstance($model, 'file');
-            $model->file->saveAs('C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension);
+            $model->file->saveAs('uploads/'.$imageName.'.'.$model->file->extension);
             //Save the path in the db column
-            $model->file = 'C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
+            $model->file = 'http://localhost'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
         }
 
         $model->date_art = date('Y-m-d H:i:s');
@@ -161,11 +161,11 @@ class ArticleController extends Controller
                 $file = \yii\web\UploadedFile::getInstance($model, 'file');
                     if($file){
                         //get the instance of the upload file
-                        $imageName = $model->titre;
+                        $imageName = utf8_encode($model->titre);
                         $model->file = UploadedFile::getInstance($model, 'file');
-                        $model->file->saveAs('C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension);
+                        $model->file->saveAs('uploads/'.$imageName.'.'.$model->file->extension);
                         //Save the path in the db column
-                        $model->file = 'C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
+                        $model->file = 'http://localhost/'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
                             
                              //Supprimer l'ancienne image
                         if($articleAncien->file!=$model->file){
@@ -181,11 +181,11 @@ class ArticleController extends Controller
                     $file = \yii\web\UploadedFile::getInstance($model, 'file');
                     if($file){
                         //get the instance of the upload file
-                        $imageName = $model->titre;
+                        $imageName = utf8_encode($model->titre);
                         $model->file = UploadedFile::getInstance($model, 'file');
-                        $model->file->saveAs('C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension);
+                        $model->file->saveAs('uploads/'.$imageName.'.'.$model->file->extension);
                         //Save the path in the db column
-                        $model->file = 'C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
+                        $model->file = 'http://localhost/'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
                     }
                 
             }
