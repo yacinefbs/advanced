@@ -1,52 +1,47 @@
-<div class="owl-carousel">
-  <div class="box item"> <a href="http://lematin.ma/journal/2017/s-a-r-le-prince-moulay-rachid-preside-a-kenitra-la-ceremonie-de-sortie-de-la-17e-promotion-du-cours-superieur-de-defense-et-la-51e-promotion-du-cours-etat-major/274293.html?utm_source=link&amp;utm_campaign=Slider&amp;utm_medium=inside&amp;utm_term=Page-Home&amp;utm_content=lematin">
-<div class="carousel-caption">
-<h3>Sur Hautes Instructions de Sa Majesté le Roi Mohammed VI</h3>
-<h2>S.A.R. le Prince Moulay Rachid préside à Kénitra la cérémonie de sortie de la 17e promotion du Cours supérieur de Défense et la 51e promotion du Cours État-major</h2>
-</div>
-<img class="imgslider" src="http://images.lematin.ma/2017/06/SAR-MOULAY-RACHID-20170628.jpg">
-<div class="overlay-info">
-<div class="cat">
-<p class="cat-data"><span class="cat1">Nation</span></p>
-</div>
-</div>
-</a> </div>
-<div class="box item"> <a href="http://lematin.ma/journal/2017/s-a-r-le-prince-moulay-rachid-preside-a-kenitra-la-ceremonie-de-sortie-de-la-17e-promotion-du-cours-superieur-de-defense-et-la-51e-promotion-du-cours-etat-major/274293.html?utm_source=link&amp;utm_campaign=Slider&amp;utm_medium=inside&amp;utm_term=Page-Home&amp;utm_content=lematin">
-<div class="carousel-caption">
-<h3>Sur Hautes Instructions de Sa Majesté le Roi Mohammed VI</h3>
-<h2>S.A.R. le Prince Moulay Rachid préside à Kénitra la cérémonie de sortie de la 17e promotion du Cours supérieur de Défense et la 51e promotion du Cours État-major</h2>
-</div>
-<img class="imgslider" src="http://images.lematin.ma/2017/06/SAR-MOULAY-RACHID-20170628.jpg">
-<div class="overlay-info">
-<div class="cat">
-<p class="cat-data"><span class="cat1">Nation</span></p>
-</div>
-</div>
-</a> </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-  <div> Your Content </div>
-</div>
-<div id="owl-demo" class="owl-carousel owl-theme">
- 
-  <div class="item"><img src="assets/fullimage1.jpg" alt="The Last of us"></div>
-  <div class="item"><img src="assets/fullimage2.jpg" alt="GTA V"></div>
-  <div class="item"><img src="assets/fullimage3.jpg" alt="Mirror Edge"></div>
- 
-</div>
+
+  <!-- Slideshow -->
+  <div class="w3-content w3-display-container slideshow w3-margin-top w3-margin-bottom bordred">
 <?php 
-
-$script = <<< JS
-
-$(document).ready(function(){
-  $(".owl-carousel").owlCarousel();
-
-  
-});
-
-JS;
-$this->registerJs($script)
-
+use yii\helpers\Url;
+use yii\helpers\Html;
+$i=0;
+foreach ($articles['data'] as $article) {
+  ?>
+        <div class="w3-display-container mySlides w3-animate-opacity" style="display: none;">
+          <a href="<?= Url::to(['article/view','key'=>'ef32927ac29584c2a3250028c2c456d7','id'=>$article['id_art']]); ?>">
+            <img src="<?=  Html::encode($article['file'] )?>" style="width:100%">
+          </a>
+          <div class="divslidecaption">
+            <span class=" w3-padding-large"><a href="<?= Url::to(['article/view','key'=>'ef32927ac29584c2a3250028c2c456d7','id'=>$article['id_art']]); ?>"><?= Html::encode($article['titre']) ?></a></span>
+          </div>
+        </div>
+<?php 
+$i++;
+if($i==3)break;
+}//end for each
  ?>
+      <button class="w3-button w3-light-grey noselection w3-display-left" onclick="plusDivs(-1)"><b><</b></button>
+      <button class="w3-button w3-light-grey noselection w3-display-right" onclick="plusDivs(+1)"><b>></b></button>
+
+</div>
+<script>
+
+var slideIndex = 1;
+showDivs(slideIndex);
+
+function plusDivs(n) {
+    showDivs(slideIndex += n);
+}
+
+function showDivs(n) {
+    var i;
+    var x = document.getElementsByClassName("mySlides");
+    if (n > x.length) {slideIndex = 1} 
+    if (n < 1) {slideIndex = x.length} ;
+    for (i = 0; i < x.length; i++) {
+        x[i].style.display = "none"; 
+    }
+    x[slideIndex-1].style.display = "block"; 
+}
+
+</script>

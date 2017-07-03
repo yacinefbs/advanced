@@ -13,6 +13,8 @@ use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
 
+use yii\helpers\Url;
+
 /**
  * Site controller
  */
@@ -75,9 +77,25 @@ class SiteController extends Controller
     {
         return $this->render('index');
     }
+
+
     public function actionHome()
     {
-        return $this->render('home');
+        $key='ef32927ac29584c2a3250028c2c456d7';
+        $page=1;
+        $post = file_get_contents(str_replace(' ', '+', "http://localhost/yii/advanced2/backend/web/index.php?r=article/list-article&key=".$key."&page=".$page));
+        $articles = json_decode($post, true);
+
+        $url = Url::to(['article/index','key'=>$key]) ;
+
+            if($articles['status']==true){
+                    return $this->render('home',[
+                    'articles' => $articles,
+                    'url' =>$url
+                ]);
+
+            }
+
     }
 
 

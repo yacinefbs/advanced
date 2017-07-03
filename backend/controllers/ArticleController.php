@@ -344,7 +344,6 @@ class ArticleController extends Controller
         else{
             return array('status'=>false, 'message' => 'La clé est invalide');
         }
-
     }
 
     public function actionListArticleById($id, $key){
@@ -378,5 +377,4 @@ class ArticleController extends Controller
             $article->delete();
         }
     }
-
 }

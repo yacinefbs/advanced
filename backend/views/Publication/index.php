@@ -11,16 +11,20 @@ $this->title = 'Publications';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="publication-index">
+    <div class="box-header with-border">
+        <h1><?= Html::encode($this->title) ?></h1>
+        <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-    <h1><?= Html::encode($this->title) ?></h1>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a('Create Publication', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+        <p>
+            <?= Html::a('Create Publication', ['create'], ['class' => 'btn btn-success']) ?>
+        </p>
+    </div>
 
 
-    <div class="box box-default">
+    <div class="box-header with-border">
+    <section class="content">    
+<!-- SELECT2 EXAMPLE -->
+      <div class="box box-default">
         <div class="box-header with-border">
           <h3 class="box-title"></h3>
 
@@ -29,29 +33,37 @@ $this->params['breadcrumbs'][] = $this->title;
             <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
           </div>
         </div>
-    <?= GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            // ['class' => 'yii\grid\SerialColumn'],
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'filterModel' => $searchModel,
+                    'columns' => [
+                        // ['class' => 'yii\grid\SerialColumn'],
 
-            'id_pub',
-            [
-             'attribute'=>'id_client',
-             'value'=>'client.nom',
-             'label'=>"Client"
-             ],
-            'titre',
-            // 'description:ntext',
-            // 'contenu:ntext',
-            'date_pub',
-            // 'file:ntext',
+                        'id_pub',
+                        [
+                         'attribute'=>'id_client',
+                         'value'=>'client.nom',
+                         'label'=>"Client"
+                         ],
+                        'titre',
+                        // 'description:ntext',
+                        // 'contenu:ntext',
+                        'date_pub',
+                        // 'file:ntext',
 
-            // 'id_user',
+                        // 'id_user',
 
-            ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]); ?>
+                        ['class' => 'yii\grid\ActionColumn'],
+                    ],
+                ]); ?>
+              </div>
+        </div>
+    </div>
 </div>
-          
+</section>
+</div>
 </div>

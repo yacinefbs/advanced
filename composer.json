@@ -24,7 +24,8 @@
         "kartik-v/yii2-markdown": "dev-master",
         "kartik-v/yii2-editable": "@dev",
         "2amigos/yii2-ckeditor-widget": "^2.1",
-        "maxwen/yii2-ckeditor-widget": "^1.0"
+        "maxwen/yii2-ckeditor-widget": "^1.0",
+        "kartik-v/yii2-checkbox-x": "@dev"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

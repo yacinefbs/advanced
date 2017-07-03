@@ -15,7 +15,7 @@ foreach ($articles['data'] as $article) {
 		
 		<div class="item-topic w3-row">
 			<a href="<?= Url::to(['article/view','key'=>'ef32927ac29584c2a3250028c2c456d7','id'=>$article['id_art']]); ?>" class="w3-col m3 l3">
-				<img  alt="" src=" <?= "http://localhost/yii/advanced2/backend/web/". Html::encode($article['file'] )?> " class="img-thumbnail">
+				<img  alt="" src=" <?=  Html::encode($article['file'] )?> " class="img-thumbnail">
 			</a>
 			<div class="item-info w3-col m9 l9 w3-bordred">
 				<!-- <h4>
@@ -55,13 +55,13 @@ if($totalCount>$perPage){
 
 echo '<div class="w3-bar w3-center">';
 
-	$pages=$totalCount/$perPage ;
+	$pages=ceil($totalCount/$perPage) ;
 
 	//first && previous button
 	if($currentPage>1){
 	?>
-		<a href="<?= Url::to(['article/index','key'=>'ef32927ac29584c2a3250028c2c456d7','page'=>1]); ?>" class="w3-button"><<</a>
-		<a href="<?= Url::to(['article/index','key'=>'ef32927ac29584c2a3250028c2c456d7','page'=>$currentPage-1]); ?>" class="w3-button"><</a>
+		<a href="<?= $url.'&page=1' ; ?>" class="w3-button"><<</a>
+		<a href="<?= $url.'&page='.($currentPage-1) ; ?>" class="w3-button"><</a>
 	<?php
 	}
 	//end first && previous button
@@ -71,7 +71,7 @@ echo '<div class="w3-bar w3-center">';
 
 		
 		?>
-			<a href="<?= Url::to(['article/index','key'=>'ef32927ac29584c2a3250028c2c456d7','page'=>$i+1]); ?>" class="w3-button"><?php echo $i+1;  ?></a>
+			<a href="<?= $url.'&page='.($i+1) ; ?>" class="w3-button"><?php echo $i+1;  ?></a>
 
 		<?php
 		}
@@ -79,7 +79,7 @@ echo '<div class="w3-bar w3-center">';
 			$entryif = false;
 			?>
 			<a class="w3-button"> ..... </a>
-			<a href="<?= Url::to(['article/index','key'=>'ef32927ac29584c2a3250028c2c456d7','page'=>$pages]); ?>" class="w3-button"><?= $pages ?></a>
+			<a href="<?= $url.'&page='.$pages ; ?>" class="w3-button"><?= $pages ?></a>
 		<?php
 		}
 
@@ -87,8 +87,8 @@ echo '<div class="w3-bar w3-center">';
 		//last && next button
 	if($currentPage<$pages){
 	?>
-		<a href="<?= Url::to(['article/index','key'=>'ef32927ac29584c2a3250028c2c456d7','page'=>$currentPage+1]); ?>" class="w3-button">></a>
-		<a href="<?= Url::to(['article/index','key'=>'ef32927ac29584c2a3250028c2c456d7','page'=>$pages]); ?>" class="w3-button">>></a>
+		<a href="<?= $url.'&page='.($currentPage+1) ; ?>" class="w3-button">></a>
+		<a href="<?= $url.'&page='.$pages ; ?>" class="w3-button">>></a>
 	<?php
 	}
 	//end first && previous button
