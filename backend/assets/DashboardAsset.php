@@ -17,7 +17,7 @@ class DashboardAsset extends AssetBundle
         'https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css',
         'dist/css/AdminLTE.min.css',
         'dist/css/skins/_all-skins.min.css',
-
+        'css/bootstrap.min.css',
         'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic',
         'plugins/icheck/flat/blue.css',
 
@@ -34,7 +34,7 @@ class DashboardAsset extends AssetBundle
         'dist/js/adminlte.min.js',
         'plugins/chartjs/Chart.min.js',
         // 'dist/js/pages/dashboard.js',
-        // 'dist/js/demo.js',
+        'dist/js/demo.js',
         // 'dist/js/jquery-2.2.4.min.js',
 
     ];
