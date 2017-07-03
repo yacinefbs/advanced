@@ -54,7 +54,7 @@ use dosamigos\ckeditor\CKEditor;
                 <hr />
                               
                  <?= $form->field($model, 'publie')->dropDownList(
-                     array(['1'=>'Oui', '0' => 'Non', '9' => 'Supprimé'])
+                     ['1'=>'Oui', '0' => 'Non', '9' => 'Supprimé']
                  ); 
                  // ['prompt' => 'Publier ?']
                  ?>
