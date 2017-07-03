@@ -43,7 +43,7 @@ class Article extends \yii\db\ActiveRecord
             [['contenu'], 'string'],
             [['date_art'], 'safe'],
             [['publie', 'id_user'], 'integer'],
-            [['titre'], 'string', 'max' => 30],
+            [['titre'], 'string', 'max' => 255],
             [['file'], 'string', 'max' => 255],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
         ];

@@ -11,7 +11,7 @@ use backend\models\User;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="article-form" style="width : 95%;">
+<div class="article-form">
     <div class="box-header with-border">
     <section class="content">    
 <!-- SELECT2 EXAMPLE -->

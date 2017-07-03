@@ -83,10 +83,16 @@ class PublicationController extends Controller
     {
         
         $model = new Publication();
-
+            
         if ($model->load(Yii::$app->request->post())) {
-
-            // var_dump($model);
+            
+            echo 'user :'.$model->id_user.'<br />';
+            echo 'titre :'.$model->titre.'<br />';
+            echo 'desc :'.$model->description.'<br />';
+            echo 'contenu :'.$model->contenu.'<br />';
+            echo 'date_pub :'.$model->date_pub.'<br />';
+            echo 'file :'.$model->file.'<br />';
+            echo 'client :'.$model->id_client.'<br />';
             // die();
 
             $model->file = UploadedFile::getInstance($model,'file');
@@ -96,6 +102,7 @@ class PublicationController extends Controller
                 $model->file = 'uploads/pub/' .$time. '.' .$model->file->extension ;
             }
             $model->id_user=Yii::$app->user->id;
+
             $model->save();
              
             return $this->redirect(['view', 'id' => $model->id_pub]);

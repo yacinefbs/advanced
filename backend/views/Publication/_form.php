@@ -6,6 +6,7 @@ use kartik\select2\Select2;
 use backend\models\Client;
 use yii\helpers\ArrayHelper;
 use kartik\date\DatePicker;
+use dosamigos\ckeditor\CKEditor;
 
 
 /* @var $this yii\web\View */
@@ -14,17 +15,40 @@ use kartik\date\DatePicker;
 ?>
 
 <div class="categorie-index">
+<div class="box-header with-border">
+    <section class="content">    
+<!-- SELECT2 EXAMPLE -->
+      <div class="box box-default">
+        <div class="box-header with-border">
+          <h3 class="box-title"></h3>
 
-    <p>
-        <?= Html::a('Ajouter Publication', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-remove"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="row">
+            <div class="col-md-12">
+        
             <?php $form = ActiveForm::begin(); ?>
 
             <?= $form->field($model, 'titre')->textInput(['maxlength' => true]) ?>
 
-            <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
+            <!-- <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?> -->
+            <?php
+                echo $form->field($model, 'description')->widget(CKEditor::className(), [
+                  'options' => ['rows' => 6],
+                  'preset' => 'basic'
+              ]); ?>
 
-            <?= $form->field($model, 'contenu')->textarea(['rows' => 6]) ?>
+            <!-- <?= $form->field($model, 'contenu')->textarea(['rows' => 6]) ?> -->
+            <?php
+                echo $form->field($model, 'contenu')->widget(CKEditor::className(), [
+                  'options' => ['rows' => 6],
+                  'preset' => 'basic'
+              ]); ?>
 
             <?=  $form->field($model, 'date_pub')->widget(DatePicker::className(),[
 
@@ -51,4 +75,10 @@ use kartik\date\DatePicker;
     </div>
 
     <?php ActiveForm::end(); ?>
-
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>

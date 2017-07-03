@@ -13,22 +13,26 @@ class ArticleController extends \yii\web\Controller
 
     public function actionIndex($page=1,$key)
     {
-    	$post = file_get_contents("http://localhost/yii/advanced2/backend/web/index.php?r=article/list-article&key=".$key."&page=".$page);
+    	$post = file_get_contents(str_replace(' ', '+', "http://localhost/yii/advanced2/backend/web/index.php?r=article/list-article&key=".$key."&page=".$page));
     	$articles = json_decode($post, true);
 
+    	$url = Url::to(['article/index','key'=>$key]) ;
 
 	    	if($articles['status']==true){
 	    			return $this->render('index',[
 		            'articles' => $articles,
+		            'url' =>$url
 		        ]);
 
 	    	}else{
-	    		return $this->render('index-0',[]);
+	    		return $this->render('index-0',['articles' => $articles]);
 	    	}
     }
+
+
     public function actionView($key,$id){
 
-    	$post = file_get_contents("http://localhost/yii/advanced2/backend/web/index.php?r=article/list-article-by-id&key=".$key."&id=".$id);
+    	$post = file_get_contents(str_replace(' ', '+', "http://localhost/yii/advanced2/backend/web/index.php?r=article/list-article-by-id&key=".$key."&id=".$id));
     	$article= json_decode($post, true);
 
 
@@ -38,8 +42,27 @@ class ArticleController extends \yii\web\Controller
 		        ]);
 
 	    	}else{
-	    		return $this->render('view-0',[]);
+	    		return $this->render('view-0',['article' => $article,]);
 	    	}
 
+    }
+
+    public function actionArticlesByCategorie($page=1,$key,$cat)
+    {
+    	
+    	$post = file_get_contents(str_replace(' ','+',"http://localhost/yii/advanced2/backend/web/index.php?r=article/list-article-by-categorie&key=".$key."&cat=".$cat."&page=".$page.""));
+    	$articles = json_decode($post, true);
+
+    	$url = Url::to(['article/articles-by-categorie','key'=>$key,'cat'=>$cat]) ;
+
+	    	if($articles['status']==true){
+	    			return $this->render('index',[
+		            'articles' => $articles,
+		            'url' =>$url
+		        ]);
+
+	    	}else{
+	    		return $this->render('index-0',['articles' => $articles]);
+	    	}
     }
 }

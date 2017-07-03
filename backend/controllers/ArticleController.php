@@ -15,6 +15,7 @@ use yii\helpers\ArrayHelper;
 use yii\filters\AccessControl; 
 
 
+
 /**
  * ArticleController implements the CRUD actions for Article model.
  */
@@ -102,11 +103,11 @@ class ArticleController extends Controller
         // if(filesize($model->file)>0){
         $file = \yii\web\UploadedFile::getInstance($model, 'file');
         if($file){
-            $imageName = $model->titre;
+            $imageName = utf8_encode($model->titre);
             $model->file = UploadedFile::getInstance($model, 'file');
-            $model->file->saveAs('C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension);
+            $model->file->saveAs('uploads/'.utf8_decode($imageName).'.'.$model->file->extension);
             //Save the path in the db column
-            $model->file = 'C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
+            $model->file = 'http://localhost'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
         }
 
         $model->date_art = date('Y-m-d H:i:s');
@@ -161,11 +162,11 @@ class ArticleController extends Controller
                 $file = \yii\web\UploadedFile::getInstance($model, 'file');
                     if($file){
                         //get the instance of the upload file
-                        $imageName = $model->titre;
+                        $imageName = utf8_encode($model->titre);
                         $model->file = UploadedFile::getInstance($model, 'file');
-                        $model->file->saveAs('C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension);
+                        $model->file->saveAs('uploads/'.utf8_decode($imageName).'.'.$model->file->extension);
                         //Save the path in the db column
-                        $model->file = 'C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
+                        $model->file = 'http://localhost/'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
                             
                              //Supprimer l'ancienne image
                         if($articleAncien->file!=$model->file){
@@ -181,11 +182,11 @@ class ArticleController extends Controller
                     $file = \yii\web\UploadedFile::getInstance($model, 'file');
                     if($file){
                         //get the instance of the upload file
-                        $imageName = $model->titre;
+                        $imageName = utf8_encode($model->titre);
                         $model->file = UploadedFile::getInstance($model, 'file');
-                        $model->file->saveAs('C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension);
+                        $model->file->saveAs('uploads/'.utf8_decode($imageName).'.'.$model->file->extension);
                         //Save the path in the db column
-                        $model->file = 'C:/wamp/www'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
+                        $model->file = 'http://localhost/'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->file->extension;
                     }
                 
             }
@@ -198,6 +199,7 @@ class ArticleController extends Controller
 
             $model->date_art = date('Y-m-d H:i:s');
             $model->save();
+            
 
 
             return $this->redirect(['view', 'id' => $model->id_art]);
@@ -272,7 +274,7 @@ class ArticleController extends Controller
         
         $minArt = ($page-1)*5;
         $maxArt = $minArt+5;
-        $article = Article::findBySql('SELECT * FROM Article where publie=1 LIMIT '.$minArt.',5')->all();
+        $article = Article::findBySql('SELECT * FROM Article where publie=1 order by id_art desc LIMIT '.$minArt.',5 ')->all();
         
         //créer un fichier json
 
@@ -312,7 +314,7 @@ class ArticleController extends Controller
         // echo $minArt.'   '.$maxArt;
 
         $articles = Article::findBySql('SELECT * FROM Article art, art_cat a, categorie c where
-        a.id_cat=c.id_cat and art.id_art=a.id_art and c.categorie="'.$cat.'" LIMIT '.$minArt.',5')->all();
+        a.id_cat=c.id_cat and art.id_art=a.id_art and c.categorie="'.$cat.'" order by art.id_art desc LIMIT '.$minArt.',5')->all();
 
         $nbr_article = count($articlesForCount);
         $totalPages = ceil($nbr_article/5);
@@ -342,7 +344,6 @@ class ArticleController extends Controller
         else{
             return array('status'=>false, 'message' => 'La clé est invalide');
         }
-
     }
 
     public function actionListArticleById($id, $key){
@@ -376,5 +377,4 @@ class ArticleController extends Controller
             $article->delete();
         }
     }
-
 }

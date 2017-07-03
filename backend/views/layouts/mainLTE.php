@@ -230,13 +230,13 @@ DashboardAsset::register($this);
   </aside>
   
 <div class="content-wrapper">
-<div class="container">
+<!-- <div class="container"> -->
         <?= Breadcrumbs::widget([
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
         <?= $content ?>
-    </div>
+    <!-- </div> -->
 </div>
 
 <footer class="footer">

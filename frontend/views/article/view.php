@@ -11,7 +11,7 @@ $artcl = $article['data'];
 	<hr>
 		<span><?=  Html::encode($artcl['date_art']) ?></span>
 	<hr>
-	<img src=" <?= "http://localhost/yii/advanced2/backend/web/". $artcl['file'] ?> " class="w3-round" alt="Norway">
+	<img src=" <?= $artcl['file'] ?> " class="w3-round" alt="Norway">
 	<div class="content">
 		<p>
 			<?= Html::encode($artcl['contenu']) ?>
