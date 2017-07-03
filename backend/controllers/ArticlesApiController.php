@@ -8,6 +8,8 @@ use backend\models\ArticlesApiSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl; 
+use yii\web\UploadedFile;
 
 /**
  * ArticlesApiController implements the CRUD actions for ArticlesApi model.
@@ -17,6 +19,8 @@ class ArticlesApiController extends Controller
     /**
      * @inheritdoc
      */
+    public $layout="mainLTE";
+    
     public function behaviors()
     {
         return [
@@ -24,6 +28,18 @@ class ArticlesApiController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'only' => ['create','update', 'delete', 'index'],
+                'rules' => [
+                    // allow authenticated users
+                    [
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                      // everything else is denied by default
                 ],
             ],
         ];
@@ -65,7 +81,48 @@ class ArticlesApiController extends Controller
     {
         $model = new ArticlesApi();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
+
+            $file = \yii\web\UploadedFile::getInstance($model, 'image');
+            if($file){
+                $imageName = utf8_encode($model->surTitre);
+                var_dump('imagedd : '.$imageName);
+                // exit;
+                $model->image = UploadedFile::getInstance($model, 'image');
+                $model->image->saveAs('uploads/'.utf8_decode($imageName).'.'.$model->image->extension);
+                //Save the path in the db column
+                $model->image = 'http://localhost'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->image->extension;
+            }
+
+
+
+            $model->article_year = date("Y");
+            $model->imgcaption = $model->surTitre;
+            $model->auteur_id = strval(Yii::$app->user->getId()); //à verifier
+            $model->creepar_id = strval(Yii::$app->user->getId());
+            $model->modifpar_id = strval(Yii::$app->user->getId());
+            
+            // $model->is_comment = '0';
+            // $model->is_slider = '0';
+            // $model->statut = '1';
+            // $model->is_galerie = '0';
+            // $model->is_video = '0';
+            // $model->is_audio = '0';
+            // $model->is_social = '0';
+            // $model->idOut = 1;
+            // $model->idParent = 1;
+            // $model->origine_id = 1;
+            
+
+            // var_dump($model);
+            // exit;
+
+            $model->save();
+            // var_dump($model->getErrors());
+            // exit;
+            
+
             return $this->redirect(['view', 'id' => $model->idContent]);
         } else {
             return $this->render('create', [
@@ -83,14 +140,65 @@ class ArticlesApiController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $articleAncien = ArticlesApi::findBySql('SELECT * FROM Articles_api WHERE idContent='.$model->idContent)->one();
+        var_dump($articleAncien->image);
+        if ($model->load(Yii::$app->request->post())) {
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->idContent]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
-        }
+            $file = \yii\web\UploadedFile::getInstance($model, 'image');
+            if($articleAncien->image!=''){
+
+                    if($file){
+
+                        //get the instance of the upload file
+                        $imageName = utf8_encode($model->surTitre);
+                        $model->image = UploadedFile::getInstance($model, 'image');
+                        // echo 'imageName'.$imageName;
+                        // exit;
+                        $model->image->saveAs('uploads/'.utf8_decode($imageName).'.'.$model->image->extension);
+                        //Save the path in the db column
+                        $model->image = 'http://localhost/'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->image->extension;
+                            
+                             //Supprimer l'ancienne image
+                        if($articleAncien->image!=$model->image){
+                            if(isset($articleAncien->image)){
+                                unlink($articleAncien->image);
+                            }
+                        }
+                    }
+                }
+                    else{
+
+                            if($file){
+                                //get the instance of the upload file
+                                $imageName = utf8_encode($model->surTitre);
+                                $model->image = UploadedFile::getInstance($model, 'image');
+                                $model->image->saveAs('uploads/'.utf8_decode($imageName).'.'.$model->image->extension);
+                                //Save the path in the db column
+                                $model->image = 'http://localhost/'.Yii::$app->request->baseUrl.'/uploads/'.$imageName.'.'.$model->image->extension;
+                            }
+                    }
+
+                    if($articleAncien->image!=''){
+
+                        $file = \yii\web\UploadedFile::getInstance($model, 'image');
+                            if(!$file){
+                                $model->image = $articleAncien->image;
+                            }
+                    }
+
+                    $model->article_year = date('Y');
+                    $model->auteur_id = strval(Yii::$app->user->getId()); //à verifier
+                    $model->creepar_id = strval(Yii::$app->user->getId());
+                    $model->modifpar_id = strval(Yii::$app->user->getId());
+
+                    $model->save();
+                    return $this->redirect(['view', 'id' => $model->idContent]);
+
+                } else {
+                    return $this->render('update', [
+                        'model' => $model,
+                    ]);
+                }
     }
 
     /**
@@ -101,8 +209,14 @@ class ArticlesApiController extends Controller
      */
     public function actionDelete($id)
     {
+        $articleApi = ArticlesApi::findOne($id);
         $this->findModel($id)->delete();
-
+        // var_dump($articleApi); 
+        if($articleApi->image>0){
+            $url = substr($articleApi->image, 17);
+            $url = 'C:/wamp/www/'.$url;
+            unlink($url);
+        }
         return $this->redirect(['index']);
     }
 
@@ -121,4 +235,46 @@ class ArticlesApiController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+
+///Partie Api
+
+    public function actionListArticle($page, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        $articleForCount  = $articleForCount  = ArticlesApi::find()->where('statut=1')->all();
+        
+        $minArt = ($page-1)*5;
+        $maxArt = $minArt+5;
+        $article = Article::findBySql('SELECT * FROM Article where publie=1 order by id_art desc LIMIT '.$minArt.',5 ')->all();
+        
+        //créer un fichier json
+
+        /*$fp = fopen('C:\wamp\www\yii\advanced2\backend\web\json\results.json', 'w');
+        fwrite($fp, json_encode($article));
+        fclose($fp);*/
+
+        $nbr_article = count($articleForCount);
+        $totalPages = ceil($nbr_article/5);
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($article)>0){
+                    return array('status'=>true, 'data'=>$article,
+                        'info'=>['totalCount'=> $nbr_article,
+                            // 'pageCount'=> $totalPages,
+                            'currentPage'=> $page,
+                            'perPage'=> 5]
+                         );
+            }
+            else{
+                return array('status'=>false, 'message'=>'Aucun article trouvé.');
+            }
+        }
+        else{
+            return array('status'=>false, 'message' => 'La clé est invalide');
+        }
+    }
+
+
 }

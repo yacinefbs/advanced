@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\ArticlesApi */
 
-$this->title = 'Create Articles Api';
+$this->title = 'Ajouter Article';
 $this->params['breadcrumbs'][] = ['label' => 'Articles Apis', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

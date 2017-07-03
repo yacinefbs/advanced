@@ -69,6 +69,8 @@ class ArticlesApi extends \yii\db\ActiveRecord
             [['surTitre'], 'string', 'max' => 128],
             [['image', 'imgcaption'], 'string', 'max' => 250],
             [['auteur_id', 'source_id', 'creepar_id', 'modifpar_id'], 'string', 'max' => 200],
+            [['titre','idRubrique', 'statut', 'is_comment', 'is_slider', 'is_galerie', 'is_video', 'is_audio', 'is_social', ], 'required'],
+
         ];
     }
 
