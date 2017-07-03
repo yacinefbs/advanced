@@ -32,6 +32,7 @@ class DashboardAsset extends AssetBundle
         'plugins/slimScroll/jquery.slimscroll.min.js',
         'plugins/fastclick/fastclick.js',
         'dist/js/adminlte.min.js',
+        'plugins/chartjs/Chart.min.js',
         // 'dist/js/pages/dashboard.js',
         // 'dist/js/demo.js',
         // 'dist/js/jquery-2.2.4.min.js',

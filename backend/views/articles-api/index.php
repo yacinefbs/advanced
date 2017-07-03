@@ -7,9 +7,10 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\ArticlesApiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articles Apis';
+$this->title = 'Articles';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="article-index">
     <div class="box-header with-border">
         <h1><?= Html::encode($this->title) ?></h1>
