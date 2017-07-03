@@ -372,7 +372,7 @@ class ArticleController extends Controller
 
     public function actionSupprimerArticleById($id){
         $article = Article::find()
-                        ->where(['id_art'=>$id])->one();
+                 ->where(['id_art'=>$id])->one();
         if($article){
             $article->delete();
         }

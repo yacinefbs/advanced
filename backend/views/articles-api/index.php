@@ -7,9 +7,10 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\ArticlesApiSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Articles Apis';
+$this->title = 'Articles';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <div class="article-index">
     <div class="box-header with-border">
         <h1><?= Html::encode($this->title) ?></h1>
@@ -39,12 +40,12 @@ $this->params['breadcrumbs'][] = $this->title;
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
                     'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
+                        // ['class' => 'yii\grid\SerialColumn'],
 
                         'idContent',
-                        'idOut',
+                        // 'idOut',
                         'article_year',
-                        'idParent',
+                        // 'idParent',
                         'idRubrique',
                         // 'origine_id',
                         // 'ordre',
@@ -65,7 +66,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         // 'exclusif',
                         // 'is_comment',
                         // 'is_slider',
-                        // 'statut',
+                        'statut',
                         // 'slug:ntext',
                         // 'is_galerie',
                         // 'is_video',

@@ -160,8 +160,10 @@ class ArticlesApiController extends Controller
                             
                              //Supprimer l'ancienne image
                         if($articleAncien->image!=$model->image){
-                            if(isset($articleAncien->image)){
-                                unlink($articleAncien->image);
+                            $url = substr($articleAncien->image, 17);
+                            $url = 'C:/wamp/www/'.$url;
+                            if(isset($url)){
+                                unlink($url);
                             }
                         }
                     }
@@ -245,8 +247,8 @@ class ArticlesApiController extends Controller
         $articleForCount  = $articleForCount  = ArticlesApi::find()->where('statut=1')->all();
         
         $minArt = ($page-1)*5;
-        $maxArt = $minArt+5;
-        $article = Article::findBySql('SELECT * FROM Article where publie=1 order by id_art desc LIMIT '.$minArt.',5 ')->all();
+        // $maxArt = $minArt+5;
+        $article = ArticlesApi::findBySql('SELECT * FROM Articles_api where statut=1 order by idContent desc LIMIT '.$minArt.',5 ')->all();
         
         //créer un fichier json
 
@@ -276,5 +278,88 @@ class ArticlesApiController extends Controller
         }
     }
 
+    public function actionListArticleByCategorie($cat, $page, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        
+        $minArt = ($page-1)*5;
+        // $maxArt = $minArt+5;
+        $articlesForCount = ArticlesApi::findBySql('SELECT * FROM Articles_api art, categorie c where
+        art.idRubrique=c.id_cat and c.categorie="'.$cat.'" and statut=1')->all();
+        // echo $minArt.'   '.$maxArt;
 
+        $articles = ArticlesApi::findBySql('SELECT * FROM Articles_api art, categorie c where
+        art.idRubrique=c.id_cat and c.categorie="'.$cat.'" order by art.idContent desc LIMIT '.$minArt.',5')->all();
+
+        $nbr_article = count($articlesForCount);
+        $totalPages = ceil($nbr_article/5);
+
+
+        $tabArtlien =[];
+        foreach ($articles as $value) {
+            array_push($tabArtlien, 'article/list-article-by-id&'.$value['idContent']);
+        }
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($articles)>0){
+                return array('status'=>true, 'data'=>$articles, 
+                            'info' => ['totalCount'=> $nbr_article,
+                            // 'pageCount'=> $totalPages,
+                            'currentPage'=> $page,
+                            'perPage'=> 5],
+                    $tabArtlien
+                );
+            }
+            else{
+                return array('status'=>false, 'message'=>'Aucun article trouvé.');
+            }
+        }
+        else{
+            return array('status'=>false, 'message' => 'La clé est invalide');
+        }
+    }
+
+
+    public function actionListArticleById($id, $key){
+            \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+
+            $article = ArticlesApi::find()
+                    ->where(['idContent' => $id])
+                    ->one();
+
+
+
+            $token_key = md5('yacine');
+
+            if($key==$token_key){
+                if(count($article)>0){
+                    return array('status'=>true, 'data'=>$article);
+                }
+                else{
+                    return array('status'=>false, 'message'=>'Aucun article trouvé.');
+                }
+            }
+            else{
+                return array('status'=>false, 'message' => 'La clé est invalide');
+            }
+        }
+
+
+        public function actionSupprimerArticleById($id){
+        // $article = ArticlesApi::find()
+        //                 ->where(['id_art'=>$id])->one();
+        // if($article){
+        //     $article->delete();
+        // }
+
+        $articleApi = ArticlesApi::findOne($id);
+        $this->findModel($id)->delete();
+        // var_dump($articleApi); 
+        if($articleApi->image>0){
+            $url = substr($articleApi->image, 17);
+            $url = 'C:/wamp/www/'.$url;
+            unlink($url);
+        }
+    }
 }
