@@ -6,6 +6,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use yii\mongodb\Connection;
 
 /**
  * Site controller
@@ -62,6 +63,14 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        /***************MongoDB : Début*******************/
+        $result = Yii::$app->mongodb->createCommand(['listIndexes' => 'some_collection'])->execute();
+
+        /***************MongoDB :   Fin*******************/
+
+
+
+
         return $this->render('index');
     }
 

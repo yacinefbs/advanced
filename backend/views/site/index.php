@@ -1,7 +1,7 @@
 <?php
 use miloschuman\highcharts\Highcharts;
 
-$this->title = 'tableau de bord';
+$this->title = 'Tableau de bord';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <!-- <div class="site-index"> -->
@@ -46,7 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-
         </div>
         <!-- /.col (LEFT) -->
         <div class="col-md-6">
@@ -89,11 +88,9 @@ $this->params['breadcrumbs'][] = $this->title;
             <!-- /.box-body -->
           </div>
           <!-- /.box -->
-
         </div>
         <!-- /.col (RIGHT) -->
       </div>
       <!-- /.row -->
-
     </section>
 <!-- </div> -->

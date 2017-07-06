@@ -13,7 +13,6 @@ use yii\widgets\Breadcrumbs;
 use common\widgets\Alert;
 use yii\helpers\Url;
 use backend\models\User;
-
 AppAsset::register($this);
 // DashboardAsset::register($this);
 siteAsset::register($this);
@@ -251,7 +250,19 @@ siteAsset::register($this);
 
 <?php $this->endBody() ?>
 <script>
-  
+window.onload=function(){
+  $.ajax({
+      type     :'POST',
+      cache    : false,
+      url  : "<?php Url::to(['site/index']); ?>",
+      success  : function(data) {
+          //$('#close').html(response);
+          alert('hello');
+      }
+    });
+}
+  // var v = "<?php echo "'dd'"; ?>";
+  // alert(v);  
   $(function () {
     /* ChartJS
      * -------
@@ -267,8 +278,8 @@ siteAsset::register($this);
     // This will get the first returned node in the jQuery collection.
     var areaChart = new Chart(areaChartCanvas);
 
-    var test = <?php echo 'test'; ?>; 
-    alert(test);
+    // var test = <?php echo 'test'; ?>; 
+    // alert(test);
 
     var areaChartData = {
       labels: ["January", "February", "March", "April", "May", "June", "July"],
