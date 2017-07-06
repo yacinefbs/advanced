@@ -66,7 +66,7 @@ class ArticlesApiController extends Controller
      * @return mixed
      */
     public function actionView($id)
-    {
+    {      
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
@@ -328,12 +328,16 @@ class ArticlesApiController extends Controller
                     ->where(['idContent' => $id])
                     ->one();
 
-
-
             $token_key = md5('yacine');
 
             if($key==$token_key){
                 if(count($article)>0){
+                    $articleObg = $article = ArticlesApi::find()
+                                ->where(['idContent' => $id])
+                                ->one();
+
+                    $articleObg->count_views = $articleObg->count_views + 1;
+                    $articleObg->save();
                     return array('status'=>true, 'data'=>$article);
                 }
                 else{

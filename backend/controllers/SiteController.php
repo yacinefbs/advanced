@@ -16,7 +16,7 @@ class SiteController extends Controller
      * @inheritdoc
      */
     // public $layout="mainLTE-Login";   
-    public $layout="mainLTE";  
+    public $layout="SitemainLTE";  
     public function behaviors()
     {
         return [

@@ -7,7 +7,7 @@ use yii\web\AssetBundle;
 /**
  * Main backend application asset bundle.
  */
-class DashboardAsset extends AssetBundle
+class siteAsset extends AssetBundle
 {
     public $basePath = '@webroot';
     public $baseUrl = '@web';
@@ -22,7 +22,7 @@ class DashboardAsset extends AssetBundle
         'plugins/icheck/flat/blue.css',
     ];
     public $js = [
-        // 'https://code.jquery.com/jquery-2.2.3.min.js',
+        // 'https://code.jquery.com/jquery-2.2.4.min.js',
         // 'https://code.jquery.com/ui/1.11.4/jquery-ui.min.js',
         'https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js',
         'dist/js/bootstrap.min.js',
@@ -32,10 +32,10 @@ class DashboardAsset extends AssetBundle
         'dist/js/adminlte.min.js',
         'plugins/chartjs/Chart.min.js',
         // 'dist/js/pages/dashboard.js',
-        'dist/js/demo.js',
+        // 'dist/js/demo.js',
         // 'dist/js/jquery-2.2.4.min.js',
-        'dist/js/app.min.js',
-        // 'dist/js/script.js',
+        // 'dist/js/app.min.js',
+        'dist/js/script2.js',
 
     ];
     public $depends = [
