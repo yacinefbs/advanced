@@ -64,7 +64,7 @@ class SiteController extends Controller
     public function actionIndex()
     {
         /***************MongoDB : Début*******************/
-        $result = Yii::$app->mongodb->createCommand(['listIndexes' => 'some_collection'])->execute();
+       // $result = Yii::$app->mongodb->createCommand(['listIndexes' => 'some_collection'])->execute();
 
         /***************MongoDB :   Fin*******************/
 
