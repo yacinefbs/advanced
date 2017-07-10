@@ -65,6 +65,8 @@ class SiteController extends Controller
     {
         /***************MongoDB : Début*******************/
        // $result = Yii::$app->mongodb->createCommand(['listIndexes' => 'some_collection'])->execute();
+        Yii::$app->mongodb->createCommand()
+            ->addInsert(['name' => 'new']);
 
         /***************MongoDB :   Fin*******************/
 
