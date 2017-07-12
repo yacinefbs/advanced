@@ -7,6 +7,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use yii\mongodb\Connection;
+use backend\models\ArticlesApi;
 
 /**
  * Site controller
@@ -65,15 +66,23 @@ class SiteController extends Controller
     {
         /***************MongoDB : Début*******************/
        // $result = Yii::$app->mongodb->createCommand(['listIndexes' => 'some_collection'])->execute();
-        Yii::$app->mongodb->createCommand()
-            ->addInsert(['name' => 'new']);
+        // Yii::$app->mongodb->createCommand()
+        //     ->addInsert(['name' => 'new']);
 
         /***************MongoDB :   Fin*******************/
+        // \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        $articlesApi = ArticlesApi::find()->all();
+        return $this->render('index', [
+                'articles' => $articlesApi,
+            ]);
+    }
 
 
+    public function getData(){
+       \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        $articlesApi = ArticlesApi::find()->all();
 
-
-        return $this->render('index');
+        var_dump($articlesApi);
     }
 
     /**

@@ -36,6 +36,8 @@ class siteAsset extends AssetBundle
         // 'dist/js/jquery-2.2.4.min.js',
         'dist/js/app.min.js',
         //'dist/js/script2.js',
+        'https://code.highcharts.com/highcharts.js',
+        'https://code.highcharts.com/modules/exporting.js'
 
     ];
     public $depends = [

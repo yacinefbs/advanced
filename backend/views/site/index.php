@@ -12,7 +12,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <!-- AREA CHART -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Area Chart</h3>
+              <h3 class="box-title">Nombre d'article</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
           <!-- DONUT CHART -->
           <div class="box box-danger">
             <div class="box-header with-border">
-              <h3 class="box-title">Donut Chart</h3>
+              <h3 class="box-title">Nombre top articles</h3>
 
               <div class="box-tools pull-right">
                 <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -92,5 +92,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <!-- /.col (RIGHT) -->
       </div>
       <!-- /.row -->
+      <div id="container"></div>
     </section>
 <!-- </div> -->
