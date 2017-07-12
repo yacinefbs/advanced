@@ -304,6 +304,8 @@ $(document).ready(function(){
       }
     });
 });*/
+  
+//commentaire
 
   // <?php
   // $labels = "";
@@ -314,6 +316,7 @@ $(document).ready(function(){
   //   echo $labels;
   // ?>
 
+  
   
   $(function () {
     /* ChartJS
