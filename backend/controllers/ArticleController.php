@@ -359,7 +359,23 @@ class ArticleController extends Controller
 
         if($key==$token_key){
             if(count($article)>0){
-                return array('status'=>true, 'data'=>$article);
+                $articleObg = Article::find()
+                            ->where(['id_art' => $id])
+                            ->one();
+
+                $articleObg->count_views = $articleObg->count_views + 1;
+                $articleObg->save();
+
+                $articleObg = Article::find()
+                            ->where(['id_art' => $id])
+                            ->one();
+
+                return array('status'=>true,  'data'=>$article,
+                            'info'=>
+                                [
+                                    'count_views'=> $articleObg->count_views
+                                ]
+                            );
             }
             else{
                 return array('status'=>false, 'message'=>'Aucun article trouvé.');
@@ -368,6 +384,33 @@ class ArticleController extends Controller
         else{
             return array('status'=>false, 'message' => 'La clé est invalide');
         }
+    }
+
+    public function actionCountArticle($id){
+            \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+
+                $articleObg = Article::find()
+                            ->where(['id_art' => $id])
+                            ->one();
+
+                 if(count($articleObg)>0){           
+                    $articleObg->count_views = $articleObg->count_views + 1;
+                    $articleObg->save();
+
+                    $articleObg = Article::find()
+                                ->where(['id_art' => $id])
+                                ->one();
+
+                        return array('status'=>true,
+                        'info'=>
+                            [
+                                'count_views'=> $articleObg->count_views
+                            ]
+                        );
+                    }
+                    else{
+                        return array('status'=>false, 'message'=>'Aucun article trouvé.');
+                    }
     }
 
     public function actionSupprimerArticleById($id){

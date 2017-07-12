@@ -11,6 +11,7 @@ use Yii;
  * @property string $titre
  * @property string $contenu
  * @property string $date_art
+ * @property integer $count_views
  * @property integer $publie
  * @property string $file
  * @property integer $id_user
@@ -42,7 +43,7 @@ class Article extends \yii\db\ActiveRecord
             [['titre', 'contenu', 'date_art', 'publie', 'id_user'], 'required'],
             [['contenu'], 'string'],
             [['date_art'], 'safe'],
-            [['publie', 'id_user'], 'integer'],
+            [['publie', 'id_user', 'count_views'], 'integer'],
             [['titre'], 'string', 'max' => 255],
             [['file'], 'string', 'max' => 255],
             [['id_user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['id_user' => 'id']],
