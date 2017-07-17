@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\CinemaMetiers */
 
-$this->title = 'Create Cinema Metiers';
+$this->title = 'Ajouter un métier';
 $this->params['breadcrumbs'][] = ['label' => 'Cinema Metiers', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

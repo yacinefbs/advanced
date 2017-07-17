@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\CinemaSalles */
 
-$this->title = 'Create Cinema Salles';
+$this->title = 'Ajouter une salle';
 $this->params['breadcrumbs'][] = ['label' => 'Cinema Salles', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

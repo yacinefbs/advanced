@@ -25,6 +25,9 @@ use Yii;
  * @property integer $iduser_modif
  * @property string $date_modif
  * @property integer $user_id
+
+ * @property integer $real
+ * @property integer $act
  *
  * @property CinemaFilmEquipe[] $cinemaFilmEquipes
  * @property CinemaFilmGenres[] $cinemaFilmGenres
@@ -33,6 +36,9 @@ use Yii;
  */
 class CinemaFilms extends \yii\db\ActiveRecord
 {
+
+    public $real;
+    public $act;
     /**
      * @inheritdoc
      */

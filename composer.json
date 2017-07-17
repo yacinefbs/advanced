@@ -27,7 +27,8 @@
         "maxwen/yii2-ckeditor-widget": "^1.0",
         "kartik-v/yii2-checkbox-x": "@dev",
         "miloschuman/yii2-highcharts-widget": "*",
-        "kartik-v/yii2-widget-select2": "@dev"
+        "kartik-v/yii2-widget-select2": "@dev",
+        "kartik-v/yii2-widget-timepicker": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

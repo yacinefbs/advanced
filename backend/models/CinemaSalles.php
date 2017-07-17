@@ -52,6 +52,7 @@ class CinemaSalles extends \yii\db\ActiveRecord
             [['adresse', 'logo', 'photo'], 'string', 'max' => 200],
             [['longitude', 'latitude'], 'string', 'max' => 50],
             [['idville'], 'exist', 'skipOnError' => true, 'targetClass' => Villes::className(), 'targetAttribute' => ['idville' => 'id']],
+            [['idville', 'adresse', 'logo', 'photo', 'photo', 'libelle_fr', 'libelle_ar'], 'required'],
         ];
     }
 

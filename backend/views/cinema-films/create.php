@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\CinemaFilms */
 
-$this->title = 'Create Cinema Films';
+$this->title = 'Ajouter un film';
 $this->params['breadcrumbs'][] = ['label' => 'Cinema Films', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

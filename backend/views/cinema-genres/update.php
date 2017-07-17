@@ -5,7 +5,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\CinemaGenres */
 
-$this->title = 'Update Cinema Genres: ' . $model->id;
+$this->title = 'Modifier genre: ' . $model->id;
 $this->params['breadcrumbs'][] = ['label' => 'Cinema Genres', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Update';

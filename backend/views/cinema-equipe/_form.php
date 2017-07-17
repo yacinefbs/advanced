@@ -37,7 +37,7 @@ use dosamigos\ckeditor\CKEditor;
             <!-- <?= $form->field($model, 'nationalite')->textInput(['maxlength' => true]) ?> -->
             <?= $form->field($model,'nationalite')->dropDownList(
             ArrayHelper::map(Pays::find()->all(),'id', 'nom_fr'),
-            ['prompt'=>'Select Company']
+            ['prompt'=>'Sélectionner une nationnalité ...']
             ) ?>
 
             <!-- <?= $form->field($model, 'date_naissance')->textInput() ?> -->

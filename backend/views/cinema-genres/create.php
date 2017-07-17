@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\CinemaGenres */
 
-$this->title = 'Create Cinema Genres';
+$this->title = 'Ajouter un genre';
 $this->params['breadcrumbs'][] = ['label' => 'Cinema Genres', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
