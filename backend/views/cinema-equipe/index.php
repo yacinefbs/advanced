@@ -4,22 +4,21 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 /* @var $this yii\web\View */
-/* @var $searchModel backend\models\PaysSearch */
+/* @var $searchModel backend\models\CinemaEquipeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Pays';
+$this->title = 'Cinema Equipes';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pays-index">
+<div class="cinema-equipe-index">
     <div class="box-header with-border">
         <h1><?= Html::encode($this->title) ?></h1>
         <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
         <p>
-            <?= Html::a('Ajouter un pays', ['create'], ['class' => 'btn btn-success']) ?>
+            <?= Html::a('Ajouter un acteur', ['create'], ['class' => 'btn btn-success']) ?>
         </p>
     </div>
-
     <div class="box-header with-border">
     <section class="content">    
 <!-- SELECT2 EXAMPLE -->
@@ -36,22 +35,23 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-                <?= GridView::widget([
-                    'dataProvider' => $dataProvider,
-                    'filterModel' => $searchModel,
-                    'columns' => [
-                        ['class' => 'yii\grid\SerialColumn'],
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
 
-                        'id',
-                        'nom_fr',
-                        'nom_ar',
-                        'slug',
-                        'publier',
-                        // 'flag',
+                    'ID',
+                    'nom',
+                    'nationalite',
+                    'date_naissance',
+                    // 'biographie:ntext',
+                    // 'photo',
+                    // 'slug',
 
-                        ['class' => 'yii\grid\ActionColumn'],
-                    ],
-                ]); ?>
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
             </div>
         </div>
     </div>
@@ -59,4 +59,3 @@ $this->params['breadcrumbs'][] = $this->title;
 </section>
 </div>
 </div>
-

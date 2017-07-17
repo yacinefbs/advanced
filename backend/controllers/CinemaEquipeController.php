@@ -8,6 +8,7 @@ use backend\models\CinemaEquipeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * CinemaEquipeController implements the CRUD actions for CinemaEquipe model.
@@ -17,6 +18,7 @@ class CinemaEquipeController extends Controller
     /**
      * @inheritdoc
      */
+    public $layout="mainLTE";
     public function behaviors()
     {
         return [
@@ -65,7 +67,18 @@ class CinemaEquipeController extends Controller
     {
         $model = new CinemaEquipe();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+
+            $file = \yii\web\UploadedFile::getInstance($model, 'photo');
+            if($file){
+                $imageName = utf8_encode($model->nom);
+                $model->photo = UploadedFile::getInstance($model, 'photo');
+                $model->photo->saveAs('uploads/'.utf8_decode($imageName).'.'.$model->photo->extension);
+                //Save the path in the db column
+                $model->photo = 'uploads/'.$imageName.'.'.$model->photo->extension;
+            }
+
+            $model->save();
             return $this->redirect(['view', 'id' => $model->ID]);
         } else {
             return $this->render('create', [
@@ -84,7 +97,51 @@ class CinemaEquipeController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $acteurAncien = CinemaEquipe::findBySql('SELECT * FROM Cinema_Equipe WHERE id='.$id)->one();
+        if ($model->load(Yii::$app->request->post())) {
+
+            if($acteurAncien->photo!=''){
+                $photo = \yii\web\UploadedFile::getInstance($model, 'photo');
+                    if($photo){
+                        //get the instance of the upload file
+                        $imageName = utf8_encode($model->nom);
+                        $model->photo = UploadedFile::getInstance($model, 'photo');
+                        $model->photo->saveAs('uploads/'.utf8_decode($imageName).'.'.$model->photo->extension);
+                        //Save the path in the db column
+                        $model->photo = 'uploads/'.$imageName.'.'.$model->photo->extension;
+                            
+                             //Supprimer l'ancienne image
+                        if($acteurAncien->photo!=$model->photo){
+                            if(isset($acteurAncien->photo)){
+                                unlink($acteurAncien->photo);
+                            }
+                        }
+                    }
+
+               
+            }
+            else{
+                    $photo = \yii\web\UploadedFile::getInstance($model, 'photo');
+                    if($photo){
+                        //get the instance of the upload file
+                        $imageName = utf8_encode($model->nom);
+                        $model->photo = UploadedFile::getInstance($model, 'photo');
+                        $model->photo->saveAs('uploads/'.utf8_decode($imageName).'.'.$model->photo->extension);
+                        //Save the path in the db column
+                        $model->photo = 'uploads/'.$imageName.'.'.$model->photo->extension;
+                    }
+            }
+            if($acteurAncien->photo!=''){
+                $photo = \yii\web\UploadedFile::getInstance($model, 'photo');
+                    if(!$photo){
+                        $model->photo = $acteurAncien->photo;
+                    }
+            }
+
+
+
+
+            $model->save();
             return $this->redirect(['view', 'id' => $model->ID]);
         } else {
             return $this->render('update', [

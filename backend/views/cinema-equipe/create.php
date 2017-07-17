@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model backend\models\CinemaEquipe */
 
-$this->title = 'Create Cinema Equipe';
+$this->title = 'Ajouter un acteur';
 $this->params['breadcrumbs'][] = ['label' => 'Cinema Equipes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

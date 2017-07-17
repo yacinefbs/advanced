@@ -37,6 +37,8 @@ class CinemaEquipe extends \yii\db\ActiveRecord
             [['biographie'], 'string'],
             [['nom', 'nationalite'], 'string', 'max' => 100],
             [['photo', 'slug'], 'string', 'max' => 200],
+            ['nom', 'match', 'pattern' => '/^[a-zA-Zéèâêîô\-\/]*$/' ],
+            [['nom', 'nationalite', 'date_naissance', 'biographie', 'photo', 'slug'], 'required'],
         ];
     }
 

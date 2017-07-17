@@ -241,6 +241,30 @@ siteAsset::register($this);
             <li class="active"><a href="<?= Url::to(['evenement/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter un événement</a></li>
           </ul>
         </li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Pays</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li class="active"><a href="<?= Url::to(['pays/index']) ?> "><i class="fa  fa-eye"></i> Listes</a></li>
+            <li class="active"><a href="<?= Url::to(['pays/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter un pays</a></li>
+          </ul>
+        </li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Ville</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li class="active"><a href="<?= Url::to(['villes/index']) ?> "><i class="fa  fa-eye"></i> Listes</a></li>
+            <li class="active"><a href="<?= Url::to(['villes/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter une ville</a></li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->

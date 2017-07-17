@@ -4,28 +4,28 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model backend\models\Pays */
+/* @var $model backend\models\CinemaEquipe */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Pays', 'url' => ['index']];
+$this->title = $model->ID;
+$this->params['breadcrumbs'][] = ['label' => 'Cinema Equipes', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="pays-view">
+<div class="cinema-equipe-view">
     <div class="box-header with-border">
         <h1><?= Html::encode($this->title) ?></h1>
 
         <p>
-            <?= Html::a('Modifier', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-            <?= Html::a('Supprimer', ['delete', 'id' => $model->id], [
+            <?= Html::a('Modifier', ['update', 'id' => $model->ID], ['class' => 'btn btn-primary']) ?>
+            <?= Html::a('Supprimer', ['delete', 'id' => $model->ID], [
                 'class' => 'btn btn-danger',
                 'data' => [
-                    'confirm' => 'Êtes-vous sûr de vouloir supprimer ce pays ?',
+                    'confirm' => 'Êtes-vous sûr de vouloir supprimer cet acteur ?',
                     'method' => 'post',
                 ],
             ]) ?>
         </p>
     </div>
-    
+
     <div class="box-header with-border">
     <section class="content">    
 <!-- SELECT2 EXAMPLE -->
@@ -42,17 +42,18 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="box-body">
           <div class="row">
             <div class="col-md-12"> 
-            <?= DetailView::widget([
-                'model' => $model,
-                'attributes' => [
-                    'id',
-                    'nom_fr',
-                    'nom_ar',
-                    'slug',
-                    'publier',
-                    'flag',
-                ],
-            ]) ?>
+                <?= DetailView::widget([
+                    'model' => $model,
+                    'attributes' => [
+                        'ID',
+                        'nom',
+                        'nationalite',
+                        'date_naissance',
+                        'biographie:ntext',
+                        'photo',
+                        'slug',
+                    ],
+                ]) ?>
             </div>
             </div>
             <!-- /.col -->

@@ -35,6 +35,7 @@ class Pays extends \yii\db\ActiveRecord
         return [
             [['publier', 'flag'], 'integer'],
             [['nom_fr', 'nom_ar', 'slug'], 'string', 'max' => 200],
+            ['nom_fr', 'match', 'pattern' => '/^[a-zA-Zéèâêîô\-\/]*$/' ],
         ];
     }
 

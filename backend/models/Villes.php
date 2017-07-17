@@ -38,6 +38,8 @@ class Villes extends \yii\db\ActiveRecord
             [['publier', 'flag_meteo', 'pays_id'], 'integer'],
             [['nom_fr', 'nom_ar', 'slug'], 'string', 'max' => 200],
             [['pays_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pays::className(), 'targetAttribute' => ['pays_id' => 'id']],
+            ['nom_fr', 'match', 'pattern' => '/^[a-zA-Zéèâêîô \-\/]*$/' ],
+            
         ];
     }
 
