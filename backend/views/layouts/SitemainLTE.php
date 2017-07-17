@@ -229,6 +229,18 @@ siteAsset::register($this);
             <li class="active"><a href="<?= Url::to(['evenement/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter un événement</a></li>
           </ul>
         </li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-film"></i> <span>Cinéma</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li class="active"><a href="<?= Url::to(['evenement/index']) ?> "><i class="fa  fa-eye"></i> Listes</a></li>
+            <li class="active"><a href="<?= Url::to(['evenement/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter un événement</a></li>
+          </ul>
+        </li>
       </ul>
     </section>
     <!-- /.sidebar -->
