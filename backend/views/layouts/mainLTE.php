@@ -226,7 +226,7 @@ DashboardAsset::register($this);
         </li>
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Cinéma</span>
+            <i class="fa fa-dashboard"></i> <span>&Eacute;v&eacute;nement</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -238,7 +238,7 @@ DashboardAsset::register($this);
         </li>
         <li class="active treeview">
           <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Météo</span>
+            <i class="fa fa-dashboard"></i> <span>Cinéma</span>
             <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
