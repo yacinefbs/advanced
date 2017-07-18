@@ -122,4 +122,66 @@ class CinemaGenresController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+     //Partie JSON : 
+    public function actionListGenres($page, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        $countGenres = CinemaGenres::find()->all();
+        
+        $minArt = ($page-1)*5;
+        $maxArt = $minArt+5;
+        $genres = CinemaGenres::findBySql('SELECT * FROM cinema_genres order by id desc LIMIT '.$minArt.',5 ')->all();
+        
+        //créer un fichier json
+
+        /*$fp = fopen('C:\wamp\www\yii\advanced2\backend\web\json\results.json', 'w');
+        fwrite($fp, json_encode($article));
+        fclose($fp);*/
+
+        $nbr_genres = count($countGenres);
+        $totalPages = ceil($nbr_genres/5);
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($genres)>0){
+                    return array('status'=>true, 'data'=>$genres,
+                        'info'=>['totalCount'=> $nbr_genres,
+                            // 'pageCount'=> $totalPages,
+                            'currentPage'=> $page,
+                            'perPage'=> 5]
+                         );
+            }
+            else{
+                return array('status'=>false, 'message'=>'Aucun genre trouvé.');
+            }
+        }
+        else{
+            return array('status'=>false, 'message' => 'La clé est invalide');
+        }
+    }
+
+    public function actionGenre($id, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+
+        $genre = CinemaGenres::find()
+                ->where(['id' => $id])
+                ->one();
+
+
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($genre)>0){
+
+                return array('status'=>true,  'data'=>$genre);
+            }
+            else{
+                return array('status'=>false, 'message'=>'Aucun genre trouvé.');
+            }
+        }
+        else{
+            return array('status'=>false, 'message' => 'La clé est invalide');
+        }
+    }
 }

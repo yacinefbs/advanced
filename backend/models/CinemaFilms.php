@@ -57,6 +57,8 @@ class CinemaFilms extends \yii\db\ActiveRecord
             [['description_fr', 'description_ar', 'statut'], 'string'],
             [['date_sortie', 'date_crea', 'date_modif'], 'safe'],
             [['rating', 'iduser_modif', 'user_id'], 'integer'],
+            ['libelle_fr', 'match', 'pattern' => '/^[a-zA-Zéèâêîô\- \/]*$/' ],
+            ['duree', 'match', 'pattern' => '/^[a-zA-Z0-9\- \/]*$/' ],
             [['libelle_fr', 'libelle_ar', 'path_photo', 'duree', 'realisateur', 'acteur', 'bandAnnonce', 'slug'], 'string', 'max' => 255],
         ];
     }
@@ -68,16 +70,16 @@ class CinemaFilms extends \yii\db\ActiveRecord
     {
         return [
             'idfilm' => 'Idfilm',
-            'libelle_fr' => 'Libelle Fr',
-            'libelle_ar' => 'Libelle Ar',
-            'description_fr' => 'Description Fr',
-            'description_ar' => 'Description Ar',
-            'path_photo' => 'Path Photo',
-            'duree' => 'Duree',
+            'libelle_fr' => 'Libellé (Français)',
+            'libelle_ar' => 'Libellé (Arabe)',
+            'description_fr' => 'Description (Français)',
+            'description_ar' => 'Description (Arabe)',
+            'path_photo' => 'Photo',
+            'duree' => 'Durée',
             'realisateur' => 'Realisateur',
             'acteur' => 'Acteur',
-            'bandAnnonce' => 'Band Annonce',
-            'date_sortie' => 'Date Sortie',
+            'bandAnnonce' => 'Bande d\'annonce',
+            'date_sortie' => 'Date de sortie',
             'rating' => 'Rating',
             'statut' => 'Statut',
             'slug' => 'Slug',
@@ -85,6 +87,8 @@ class CinemaFilms extends \yii\db\ActiveRecord
             'iduser_modif' => 'Iduser Modif',
             'date_modif' => 'Date Modif',
             'user_id' => 'User ID',
+            'real' => 'Réalisateur',
+            'act' => 'Acteur',
         ];
     }
 

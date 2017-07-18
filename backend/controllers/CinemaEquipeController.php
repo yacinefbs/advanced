@@ -178,4 +178,60 @@ class CinemaEquipeController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+
+    //Partie JSON : 
+    public function actionListEquipes($page, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        $equipeForCount = CinemaEquipe::find()->all();
+        
+        $minArt = ($page-1)*5;
+        $maxArt = $minArt+5;
+        $equipe = CinemaEquipe::findBySql('SELECT * FROM cinema_equipe order by id desc LIMIT '.$minArt.',5 ')->all();
+        
+        
+        $nbr_equipe = count($equipeForCount);
+        $totalPages = ceil($nbr_equipe/5);
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($equipe)>0){
+                    return array('status'=>true, 'data'=>$equipe,
+                        'info'=>['totalCount'=> $nbr_equipe,
+                            // 'pageCount'=> $totalPages,
+                            'currentPage'=> $page,
+                            'perPage'=> 5]
+                         );
+            }
+            else{
+                return array('status'=>false, 'message'=>'Aucun membre trouvé.');
+            }
+        }
+        else{
+            return array('status'=>false, 'message' => 'La clé est invalide');
+        }
+    }
+
+    public function actionEquipe($id, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+
+        $equipe = CinemaEquipe::find()
+                ->where(['id' => $id])
+                ->one();
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($equipe)>0){
+
+                return array('status'=>true,  'data'=>$equipe);
+            }
+            else{
+                return array('status'=>false, 'message'=>'Aucun membre trouvé.');
+            }
+        }
+        else{
+            return array('status'=>false, 'message' => 'La clé est invalide');
+        }
+    }
 }

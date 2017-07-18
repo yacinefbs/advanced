@@ -48,7 +48,7 @@ class CinemaFilmEquipe extends \yii\db\ActiveRecord
         return [
             'ID' => 'ID',
             'film_id' => 'Film ID',
-            'metier_id' => 'Metier ID',
+            'metier_id' => 'Métier ID',
             'equipe_id' => 'Equipe ID',
         ];
     }

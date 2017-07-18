@@ -30,6 +30,7 @@ class CinemaMetiers extends \yii\db\ActiveRecord
     {
         return [
             [['metier_ar', 'metier_fr'], 'string', 'max' => 45],
+            [['metier_ar', 'metier_fr'], 'required'],
         ];
     }
 
@@ -40,8 +41,8 @@ class CinemaMetiers extends \yii\db\ActiveRecord
     {
         return [
             'ID' => 'ID',
-            'metier_ar' => 'Metier Ar',
-            'metier_fr' => 'Metier Fr',
+            'metier_fr' => 'Métier (Français)',
+            'metier_ar' => 'Métier (Arabe)',
         ];
     }
 

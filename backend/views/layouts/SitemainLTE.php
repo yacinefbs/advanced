@@ -265,6 +265,80 @@ siteAsset::register($this);
             <li class="active"><a href="<?= Url::to(['villes/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter une ville</a></li>
           </ul>
         </li>
+        <!-- Début : sidebar ajoutée -->
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Acteurs</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li class="active"><a href="<?= Url::to(['cinema-equipe/index']) ?> "><i class="fa  fa-eye"></i> Listes</a></li>
+            <li class="active"><a href="<?= Url::to(['cinema-equipe/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter un acteur (réalisateur)</a></li>
+          </ul>
+        </li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Métiers</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li class="active"><a href="<?= Url::to(['cinema-metiers/index']) ?> "><i class="fa  fa-eye"></i> Listes</a></li>
+            <li class="active"><a href="<?= Url::to(['cinema-metiers/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter un métier</a></li>
+          </ul>
+        </li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Films</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li class="active"><a href="<?= Url::to(['cinema-films/index']) ?> "><i class="fa  fa-eye"></i> Listes</a></li>
+            <li class="active"><a href="<?= Url::to(['cinema-films/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter un film</a></li>
+          </ul>
+        </li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Genres</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li class="active"><a href="<?= Url::to(['cinema-genres/index']) ?> "><i class="fa  fa-eye"></i> Listes</a></li>
+            <li class="active"><a href="<?= Url::to(['cinema-genres/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter un genre</a></li>
+          </ul>
+        </li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Métiers</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li class="active"><a href="<?= Url::to(['cinema-metiers/index']) ?> "><i class="fa  fa-eye"></i> Listes</a></li>
+            <li class="active"><a href="<?= Url::to(['cinema-metiers/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter un métier</a></li>
+          </ul>
+        </li>
+        <li class="active treeview">
+          <a href="#">
+            <i class="fa fa-dashboard"></i> <span>Salles</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+          <li class="active"><a href="<?= Url::to(['cinema-salles/index']) ?> "><i class="fa  fa-eye"></i> Listes</a></li>
+            <li class="active"><a href="<?= Url::to(['cinema-salles/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter une salle</a></li>
+          </ul>
+        </li>
+        <!-- Fin   : sidebar ajoutée -->
       </ul>
     </section>
     <!-- /.sidebar -->

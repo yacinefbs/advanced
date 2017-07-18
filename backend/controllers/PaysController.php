@@ -122,4 +122,59 @@ class PaysController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    //Partie JSON : 
+    public function actionListPays($page, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        $countPays = Pays::find()->all();
+        
+        $minArt = ($page-1)*5;
+        $maxArt = $minArt+5;
+        $pays = Pays::findBySql('SELECT * FROM pays order by id desc LIMIT '.$minArt.',5 ')->all();
+        
+        
+        $nbr_pays = count($countPays);
+        $totalPages = ceil($nbr_pays/5);
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($pays)>0){
+                    return array('status'=>true, 'data'=>$pays,
+                        'info'=>['totalCount'=> $nbr_pays,
+                            // 'pageCount'=> $totalPages,
+                            'currentPage'=> $page,
+                            'perPage'=> 5]
+                         );
+            }
+            else{
+                return array('status'=>false, 'message'=>'Aucun pays trouvé.');
+            }
+        }
+        else{
+            return array('status'=>false, 'message' => 'La clé est invalide');
+        }
+    }
+
+    public function actionPays($id, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+
+        $pays = Pays::find()
+                ->where(['id' => $id])
+                ->one();
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($pays)>0){
+
+                return array('status'=>true,  'data'=>$pays);
+            }
+            else{
+                return array('status'=>false, 'message'=>'Aucun pays trouvé.');
+            }
+        }
+        else{
+            return array('status'=>false, 'message' => 'La clé est invalide');
+        }
+    }
 }

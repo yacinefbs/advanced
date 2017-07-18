@@ -122,4 +122,66 @@ class CinemaMetiersController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    //Partie JSON : 
+    public function actionListMetiers($page, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+        $countMetiers = CinemaMetiers::find()->all();
+        
+        $minArt = ($page-1)*5;
+        $maxArt = $minArt+5;
+        $metier = CinemaMetiers::findBySql('SELECT * FROM cinema_metiers order by id desc LIMIT '.$minArt.',5 ')->all();
+        
+        //créer un fichier json
+
+        /*$fp = fopen('C:\wamp\www\yii\advanced2\backend\web\json\results.json', 'w');
+        fwrite($fp, json_encode($article));
+        fclose($fp);*/
+
+        $nbr_metier = count($countMetiers);
+        $totalPages = ceil($nbr_metier/5);
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($metier)>0){
+                    return array('status'=>true, 'data'=>$metier,
+                        'info'=>['totalCount'=> $nbr_metier,
+                            // 'pageCount'=> $totalPages,
+                            'currentPage'=> $page,
+                            'perPage'=> 5]
+                         );
+            }
+            else{
+                return array('status'=>false, 'message'=>'Aucun métier trouvé.');
+            }
+        }
+        else{
+            return array('status'=>false, 'message' => 'La clé est invalide');
+        }
+    }
+
+    public function actionMetier($id, $key){
+        \Yii::$app->response->format = \Yii\web\Response::FORMAT_JSON;
+
+        $metier = CinemaMetiers::find()
+                ->where(['id' => $id])
+                ->one();
+
+
+
+        $token_key = md5('yacine');
+
+        if($key==$token_key){
+            if(count($metier)>0){
+
+                return array('status'=>true,  'data'=>$metier);
+            }
+            else{
+                return array('status'=>false, 'message'=>'Aucun métier trouvé.');
+            }
+        }
+        else{
+            return array('status'=>false, 'message' => 'La clé est invalide');
+        }
+    }
 }

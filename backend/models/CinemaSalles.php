@@ -9,8 +9,8 @@ use Yii;
  *
  * @property integer $idSalle
  * @property integer $idville
- * @property string $libelle_fr
- * @property string $libelle_ar
+ * @property string $libellefr
+ * @property string $libellear
  * @property string $seance_fr
  * @property string $seance_ar
  * @property string $slug
@@ -44,15 +44,16 @@ class CinemaSalles extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['idville', 'cree_par', 'modifie_par'], 'integer'],
+            [['cree_par', 'modifie_par'], 'integer'],
             [['slug', 'adresse', 'longitude', 'latitude', 'logo', 'photo', 'cree_par'], 'required'],
             [['publier'], 'string'],
             [['date_crea', 'date_modif'], 'safe'],
-            [['libelle_fr', 'libelle_ar', 'seance_fr', 'seance_ar', 'slug'], 'string', 'max' => 255],
+            [['libellefr', 'libellear', 'seance_fr', 'seance_ar', 'slug'], 'string', 'max' => 255],
             [['adresse', 'logo', 'photo'], 'string', 'max' => 200],
             [['longitude', 'latitude'], 'string', 'max' => 50],
             [['idville'], 'exist', 'skipOnError' => true, 'targetClass' => Villes::className(), 'targetAttribute' => ['idville' => 'id']],
-            [['idville', 'adresse', 'logo', 'photo', 'photo', 'libelle_fr', 'libelle_ar'], 'required'],
+            [['idville', 'adresse', 'logo', 'photo', 'photo', 'libellefr', 'libellear'], 'required'],
+            [['adresse', 'logo', 'photo', 'photo', 'libellefr', 'libellear'], 'required'],
         ];
     }
 
@@ -64,10 +65,10 @@ class CinemaSalles extends \yii\db\ActiveRecord
         return [
             'idSalle' => 'Id Salle',
             'idville' => 'Idville',
-            'libelle_fr' => 'Libelle Fr',
-            'libelle_ar' => 'Libelle Ar',
-            'seance_fr' => 'Seance Fr',
-            'seance_ar' => 'Seance Ar',
+            'libellefr' => 'Libellé (Français)',
+            'libellear' => 'Libelle (Arabe)',
+            'seance_fr' => 'Séance (Français)',
+            'seance_ar' => 'Séance (Arabe)',
             'slug' => 'Slug',
             'adresse' => 'Adresse',
             'longitude' => 'Longitude',
@@ -90,11 +91,11 @@ class CinemaSalles extends \yii\db\ActiveRecord
         return $this->hasMany(CinemaFilmSalles::className(), ['idsalle' => 'idSalle']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getIdville0()
-    {
-        return $this->hasOne(Villes::className(), ['id' => 'idville']);
-    }
+    // /**
+    //  * @return \yii\db\ActiveQuery
+    //  */
+    // public function getIdville0()
+    // {
+    //     return $this->hasOne(Villes::className(), ['id' => 'idville']);
+    // }
 }

@@ -43,8 +43,8 @@ class CinemaGenres extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'genre_fr' => 'Genre Fr',
-            'genre_ar' => 'Genre Ar',
+            'genre_fr' => 'Genre (Français)',
+            'genre_ar' => 'Genre (Arabe)',
             'slug' => 'Slug',
         ];
     }

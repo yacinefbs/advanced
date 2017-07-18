@@ -37,7 +37,7 @@ class CinemaEquipe extends \yii\db\ActiveRecord
             [['biographie'], 'string'],
             [['nom', 'nationalite'], 'string', 'max' => 100],
             [['photo', 'slug'], 'string', 'max' => 200],
-            ['nom', 'match', 'pattern' => '/^[a-zA-Zéèâêîô\-\/]*$/' ],
+            ['nom', 'match', 'pattern' => '/^[a-zA-Zéèâêîô\- \/]*$/' ],
             [['nom', 'nationalite', 'date_naissance', 'biographie', 'photo', 'slug'], 'required'],
         ];
     }
@@ -50,7 +50,7 @@ class CinemaEquipe extends \yii\db\ActiveRecord
         return [
             'ID' => 'ID',
             'nom' => 'Nom',
-            'nationalite' => 'Nationalite',
+            'nationalite' => 'Nationalité',
             'date_naissance' => 'Date Naissance',
             'biographie' => 'Biographie',
             'photo' => 'Photo',

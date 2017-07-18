@@ -45,12 +45,14 @@ use backend\models\CinemaMetiers;
                 <?= $form->field($model, 'duree')->textInput(['maxlength' => true]) ?>
 
                 <!-- <?= $form->field($model, 'realisateur')->textInput(['maxlength' => true]) ?> -->
+                <marquee><font color="red">liste des réalisateurs (multi choix)</font></marquee>
                 <?= $form->field($model,'real')->dropDownList(
                 ArrayHelper::map(CinemaMetiers::find()->all(),'ID', 'metier_fr'),
                     ['prompt'=>'Sélectionner un réalisateur ...']
                 ) ?>
 
                 <!-- <?= $form->field($model, 'acteur')->textInput(['maxlength' => true]) ?> -->
+                <marquee><font color="red">liste des acteurs (multi choix)</font></marquee>
                 <?= $form->field($model,'act')->dropDownList(
                     ArrayHelper::map(Pays::find()->all(),'id', 'nom_fr'),
                     ['prompt'=>'Sélectionner un acteur ...']

@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\CinemaMetiersSearch */
@@ -35,6 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
+            <?php Pjax::begin(); ?>
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
                 'filterModel' => $searchModel,
@@ -48,6 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     ['class' => 'yii\grid\ActionColumn'],
                 ],
             ]); ?>
+            <?php Pjax::end(); ?>
         </div>
         </div>
     </div>

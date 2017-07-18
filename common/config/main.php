@@ -5,5 +5,8 @@ return [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+       //   'controllerMap' => [           
+       //  	'api' => 'backend\controllers\CinemaFilmsController',
+       // ],
     ],
 ];
