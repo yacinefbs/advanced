@@ -61,14 +61,18 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                ['class' => 'yii\rest\UrlRule', 'controller' => 'todo']
+                ['class' => 'yii\rest\UrlRule', 'controller' => 'todo'],
+                    'villes' => 'villes/index',
+                   'api/v1/villes/<id:\d+>/<key>' => 'villes/ville'
             ],
-        ],*/
+        ],
+        */
         
     ],
     'params' => $params,
