@@ -34,7 +34,7 @@ class Villes extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nom_fr', 'nom_ar', 'slug', 'publier', 'flag_meteo', 'pays_id'], 'required'],
+            [['nom_fr', 'nom_ar', 'slug','flag_meteo', 'pays_id'], 'required'],
             [['publier', 'flag_meteo', 'pays_id'], 'integer'],
             [['nom_fr', 'nom_ar', 'slug'], 'string', 'max' => 200],
             [['pays_id'], 'exist', 'skipOnError' => true, 'targetClass' => Pays::className(), 'targetAttribute' => ['pays_id' => 'id']],
@@ -50,12 +50,12 @@ class Villes extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nom_fr' => 'Nom Fr',
-            'nom_ar' => 'Nom Ar',
+            'nom_fr' => 'Nom ville (Français)',
+            'nom_ar' => 'Nom ville (Arabe)',
             'slug' => 'Slug',
-            'publier' => 'Publier',
+            // 'publier' => 'Publier',
             'flag_meteo' => 'Flag Meteo',
-            'pays_id' => 'Pays ID',
+            'pays_id' => 'Pays',
         ];
     }
 

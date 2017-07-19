@@ -48,7 +48,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'nom_fr',
                         'nom_ar',
                         'slug',
-                        'publier',
+                        // 'publier',
                         // 'flag',
 
                         ['class' => 'yii\grid\ActionColumn'],

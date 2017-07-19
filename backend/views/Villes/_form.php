@@ -28,39 +28,40 @@ use kartik\widgets\Select2;
         <div class="box-body">
           <div class="row">
             <div class="col-md-12">
-        <?php $form = ActiveForm::begin(); ?>
+            <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'nom_fr')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'nom_fr')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'nom_ar')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'nom_ar')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
+            <?= $form->field($model, 'slug')->textInput(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'publier')->textInput() ?>
+            <!-- <?= $form->field($model, 'publier')->textInput() ?> -->
 
-        <?= $form->field($model, 'flag_meteo')->textInput() ?>
+            <?= $form->field($model, 'flag_meteo')->textInput() ?>
 
-        <!-- <?= $form->field($model, 'pays_id')->textInput() ?> -->
-        <?= $form->field($model,'pays_id')->dropDownList(
-        ArrayHelper::map(Pays::find()->all(),'id','nom_fr'),
-        ['prompt'=>'Select Company']
-        ) ?>
+            <!-- <?= $form->field($model, 'pays_id')->textInput() ?> -->
+            <?= $form->field($model,'pays_id')->dropDownList(
+            ArrayHelper::map(Pays::find()->all(),'id','nom_fr'),
+            ['prompt'=>'Selectionner un pays']
+            ) ?>
 
-        <?php 
-        // french
-        echo Select2::widget([
-            'name' => 'pays_id',
-            'language' => 'fr',
-            'data' => $data,
-            'options' => ['placeholder' => 'Sélectionnez un état ...'],
-            'pluginOptions' => [
-                'allowClear' => true
-            ],
-        ]);
-        ?>
+            <!-- <?php 
+            // french
+            /*
+            echo Select2::widget([
+                'name' => 'pays_id',
+                'language' => 'fr',
+                'data' => $data,
+                'options' => ['placeholder' => 'Sélectionnez un état ...'],
+                'pluginOptions' => [
+                    'allowClear' => true
+                ],
+            ]); */
+            ?> -->
 
         <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+            <?= Html::submitButton($model->isNewRecord ? 'Ajouter' : 'Modifier', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
 
         <?php ActiveForm::end(); ?>

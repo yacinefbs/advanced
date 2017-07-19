@@ -18,8 +18,8 @@ class CinemaSallesSearch extends CinemaSalles
     public function rules()
     {
         return [
-            [['idSalle', 'idville', 'cree_par', 'modifie_par'], 'integer'],
-            [['libelle_fr', 'libelle_ar', 'seance_fr', 'seance_ar', 'slug', 'adresse', 'longitude', 'latitude', 'logo', 'photo', 'publier', 'date_crea', 'date_modif'], 'safe'],
+            [['idSalle', 'cree_par', 'modifie_par'], 'integer'],
+            [['libellefr', 'libellear', 'seance_fr', 'seance_ar', 'slug', 'adresse', 'longitude', 'latitude', 'logo', 'photo', 'publier', 'date_crea', 'date_modif'], 'safe'],
         ];
     }
 
@@ -60,15 +60,15 @@ class CinemaSallesSearch extends CinemaSalles
         // grid filtering conditions
         $query->andFilterWhere([
             'idSalle' => $this->idSalle,
-            'idville' => $this->idville,
+            // 'idville' => $this->idville,
             'cree_par' => $this->cree_par,
             'date_crea' => $this->date_crea,
             'modifie_par' => $this->modifie_par,
             'date_modif' => $this->date_modif,
         ]);
 
-        $query->andFilterWhere(['like', 'libelle_fr', $this->libelle_fr])
-            ->andFilterWhere(['like', 'libelle_ar', $this->libelle_ar])
+        $query->andFilterWhere(['like', 'libellefr', $this->libellefr])
+            ->andFilterWhere(['like', 'libellear', $this->libellear])
             ->andFilterWhere(['like', 'seance_fr', $this->seance_fr])
             ->andFilterWhere(['like', 'seance_ar', $this->seance_ar])
             ->andFilterWhere(['like', 'slug', $this->slug])

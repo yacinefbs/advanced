@@ -164,7 +164,7 @@ DashboardAsset::register($this);
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-          <li class="active treeview">
+          <!--<li class="active treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Client</span>
             <span class="pull-right-container">
@@ -236,6 +236,7 @@ DashboardAsset::register($this);
             <li class="active"><a href="<?= Url::to(['evenement/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter un événement</a></li>
           </ul>
         </li>
+        -->
         <li class="active treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Cinéma</span>
@@ -248,6 +249,7 @@ DashboardAsset::register($this);
             <li class="active"><a href="<?= Url::to(['evenement/create']) ?>"><i class="fa  fa-plus-circle"></i> Ajouter un événement</a></li>
           </ul>
         </li>
+
         <li class="active treeview">
           <a href="#">
             <i class="fa fa-dashboard"></i> <span>Pays</span>

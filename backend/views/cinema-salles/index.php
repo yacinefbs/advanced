@@ -44,9 +44,9 @@ $this->params['breadcrumbs'][] = $this->title;
                         ['class' => 'yii\grid\SerialColumn'],
 
                         'idSalle',
-                        'libelle_fr',
-                        'libelle_ar',
-                        'idville0.nom_fr',
+                        'libellefr',
+                        'libellear',
+                        'cinemaFilmSalles.nom_fr',
                         'seance_fr',
                         // 'seance_ar',
                         // 'slug',

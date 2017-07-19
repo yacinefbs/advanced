@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3fde1552a245ce3b36d2b1c18a105f2e",
+    "content-hash": "bdea47ca3343e51a515615e7fcfd490a",
     "packages": [
         {
             "name": "2amigos/yii2-ckeditor-widget",
@@ -125,6 +125,49 @@
             "time": "2017-07-05T05:52:03+00:00"
         },
         {
+            "name": "2amigos/yii2-multi-select-widget",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/2amigos/yii2-multi-select-widget.git",
+                "reference": "8e3d743ea48db77a78778e09c4ce0d20825a69cc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/2amigos/yii2-multi-select-widget/zipball/8e3d743ea48db77a78778e09c4ce0d20825a69cc",
+                "reference": "8e3d743ea48db77a78778e09c4ce0d20825a69cc",
+                "shasum": ""
+            },
+            "require": {
+                "yiisoft/yii2": "*"
+            },
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-4": {
+                    "dosamigos\\multiselect\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio Ramirez",
+                    "email": "ramirez.cobos@gmail.com",
+                    "homepage": "http://www.ramirezcobos.com"
+                }
+            ],
+            "description": "Multiselect Bootstrap widget for Yii2.",
+            "keywords": [
+                "extension",
+                "multiselect",
+                "widget",
+                "yii"
+            ],
+            "time": "2014-05-10T18:32:51+00:00"
+        },
+        {
             "name": "bower-asset/bootstrap",
             "version": "v3.3.7",
             "source": {
@@ -200,6 +243,51 @@
             },
             "license": [
                 "Apache-2.0"
+            ]
+        },
+        {
+            "name": "bower-asset/bootstrap-multiselect",
+            "version": "v0.9.13",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/davidstutz/bootstrap-multiselect.git",
+                "reference": "6367ced04daafc054aeff51b2a903669eb0da214"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/davidstutz/bootstrap-multiselect/zipball/6367ced04daafc054aeff51b2a903669eb0da214",
+                "reference": "6367ced04daafc054aeff51b2a903669eb0da214",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap": ">=2.3.2",
+                "bower-asset/jquery": ">=1.11.0"
+            },
+            "type": "bower-asset-library",
+            "extra": {
+                "bower-asset-main": [
+                    "./dist/js/bootstrap-multiselect.js",
+                    "./dist/css/bootstrap-multiselect.css",
+                    "./dist/less/bootstrap-multiselect.less"
+                ],
+                "bower-asset-ignore": [
+                    "docs/.*",
+                    "tests/.*",
+                    "*.html",
+                    "*.git*",
+                    "*.md",
+                    "*.png",
+                    "*.php"
+                ]
+            },
+            "description": "Twitter Bootstrap plugin to make selects user friendly.",
+            "keywords": [
+                "bootstrap",
+                "css",
+                "jquery",
+                "js",
+                "less",
+                "multiselect"
             ]
         },
         {
@@ -533,6 +621,55 @@
                 "html"
             ],
             "time": "2017-06-03T02:28:16+00:00"
+        },
+        {
+            "name": "iripvanwinkle/yii2-multi-select",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/iRipVanWinkle/yii2-multi-select.git",
+                "reference": "98f245535191c48063718722315bb74ccb94fde1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/iRipVanWinkle/yii2-multi-select/zipball/98f245535191c48063718722315bb74ccb94fde1",
+                "reference": "98f245535191c48063718722315bb74ccb94fde1",
+                "shasum": ""
+            },
+            "require": {
+                "bower-asset/bootstrap-multiselect": "0.9.*",
+                "yiisoft/yii2": "2.0.*"
+            },
+            "type": "yii2-extension",
+            "extra": {
+                "asset-installer-paths": {
+                    "npm-asset-library": "vendor/npm",
+                    "bower-asset-library": "vendor/bower"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "roboapp\\multiselect\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "iRipVanWinkle",
+                    "email": "iripvanwinkle@gmail.com"
+                }
+            ],
+            "description": "Multiselect Bootstrap widget for Yii2.",
+            "keywords": [
+                "extension",
+                "multiselect",
+                "widget",
+                "yii"
+            ],
+            "time": "2016-09-15T14:59:26+00:00"
         },
         {
             "name": "kartik-v/bootstrap-checkbox-x",

@@ -17,11 +17,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'idSalle') ?>
 
-    <?= $form->field($model, 'idville') ?>
+    <!-- <?= $form->field($model, 'idville') ?> -->
 
-    <?= $form->field($model, 'libelle_fr') ?>
+    <?= $form->field($model, 'libellefr') ?>
 
-    <?= $form->field($model, 'libelle_ar') ?>
+    <?= $form->field($model, 'libellear') ?>
 
     <?= $form->field($model, 'seance_fr') ?>
 

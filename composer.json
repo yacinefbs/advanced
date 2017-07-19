@@ -28,7 +28,9 @@
         "kartik-v/yii2-checkbox-x": "@dev",
         "miloschuman/yii2-highcharts-widget": "*",
         "kartik-v/yii2-widget-select2": "@dev",
-        "kartik-v/yii2-widget-timepicker": "*"
+        "kartik-v/yii2-widget-timepicker": "*",
+        "iripvanwinkle/yii2-multi-select": "^1.0",
+        "2amigos/yii2-multi-select-widget": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

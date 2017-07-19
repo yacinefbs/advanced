@@ -68,11 +68,36 @@ return [
             'showScriptName' => false,
             'rules' => [
                 ['class' => 'yii\rest\UrlRule', 'controller' => 'todo'],
-                    'villes' => 'villes/index',
-                   'api/v1/villes/<id:\d+>/<key>' => 'villes/ville'
+                    'villes' => 'villes/index', 
+                    'nouveauVille' => 'villes/create', 
+
+                    'api/v1/ville/<id:\d+>/<key>' => 'villes/ville',
+                    'api/v1/villes/<page:\d+>/<key>' => 'villes/list-villes',
+
+
+                    'pays' => 'pays/index', 'api/v1/pays/<id:\d+>/<key>' => 'pays/pays',
+                    'pays' => 'pays/index', 'api/v1/allpays/<page:\d+>/<key>' => 'pays/list-pays',
+
+                    'salles' => 'salles/index', 'api/v1/salle/<id:\d+>/<key>' => 'cinema-salles/salle',
+                    'salles' => 'salles/index', 'api/v1/salles/<page:\d+>/<key>' => 'cinema-salles/list-salles',
+
+                    'metiers' => 'metiers/index', 'api/v1/metier/<id:\d+>/<key>' => 'cinema-metiers/metier',
+                    'metiers' =>  'metiers/index', 'api/v1/metiers/<page:\d+>/<key>' => 'cinema-metiers/list-metiers',
+
+                    'genres' =>  'genres/index', 'api/v1/genre/<id:\d+>/<key>' => 'cinema-genres/genre',
+                    'genres' =>  'genres/index', 'api/v1/genres/<page:\d+>/<key>' => 'cinema-genres/list-genres',
+
+                    'equipes' =>  'equipes/index', 'api/v1/equipe/<id:\d+>/<key>' => 'cinema-equipes/equipe',
+                    'equipes' =>  'equipes/index', 'api/v1/equipes/<page:\d+>/<key>' => 'cinema-equipes/list-equipes',
+
+                    'films' =>  'films/index', 'api/v1/film/<id:\d+>/<key>' => 'cinema-films/film',
+                    'films' =>  'films/index', 'api/v1/films/<page:\d+>/<key>' => 'cinema-films/list-films',
+
+                    
             ],
-        ],
-        */
+        ],*/
+
+        
         
     ],
     'params' => $params,

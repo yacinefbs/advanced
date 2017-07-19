@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
                     'ID',
                     'nom',
-                    'cinemaFilmEquipes.ID',
+                    'cinemaFilmEquipes.metier.ID',
                     'nationalite',
                     'date_naissance',
                     // 'biographie:ntext',

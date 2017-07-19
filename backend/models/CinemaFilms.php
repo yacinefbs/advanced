@@ -3,6 +3,8 @@
 namespace backend\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
+
 
 /**
  * This is the model class for table "cinema_films".
@@ -39,6 +41,7 @@ class CinemaFilms extends \yii\db\ActiveRecord
 
     public $real;
     public $act;
+    public $genres = [];
     /**
      * @inheritdoc
      */
@@ -53,11 +56,10 @@ class CinemaFilms extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['libelle_fr', 'libelle_ar', 'description_fr', 'description_ar', 'path_photo', 'duree', 'realisateur', 'acteur', 'bandAnnonce', 'slug', 'iduser_modif', 'date_modif', 'user_id'], 'required'],
+            [['libelle_fr', 'description_fr', 'path_photo', 'duree', 'realisateur', 'acteur', 'bandAnnonce', 'slug', 'iduser_modif', 'date_modif', 'user_id'], 'required'],
             [['description_fr', 'description_ar', 'statut'], 'string'],
             [['date_sortie', 'date_crea', 'date_modif'], 'safe'],
             [['rating', 'iduser_modif', 'user_id'], 'integer'],
-            ['libelle_fr', 'match', 'pattern' => '/^[a-zA-Zéèâêîô\- \/]*$/' ],
             ['duree', 'match', 'pattern' => '/^[a-zA-Z0-9\- \/]*$/' ],
             [['libelle_fr', 'libelle_ar', 'path_photo', 'duree', 'realisateur', 'acteur', 'bandAnnonce', 'slug'], 'string', 'max' => 255],
         ];
@@ -76,8 +78,8 @@ class CinemaFilms extends \yii\db\ActiveRecord
             'description_ar' => 'Description (Arabe)',
             'path_photo' => 'Photo',
             'duree' => 'Durée',
-            'realisateur' => 'Realisateur',
-            'acteur' => 'Acteur',
+            'real' => 'Realisateur',
+            'act' => 'Acteur',
             'bandAnnonce' => 'Bande d\'annonce',
             'date_sortie' => 'Date de sortie',
             'rating' => 'Rating',

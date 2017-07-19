@@ -22,6 +22,7 @@ class CinemaEquipe extends \yii\db\ActiveRecord
     /**
      * @inheritdoc
      */
+    
     public static function tableName()
     {
         return 'cinema_equipe';

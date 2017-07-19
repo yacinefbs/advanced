@@ -46,10 +46,10 @@ class Pays extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'nom_fr' => 'Nom Fr',
-            'nom_ar' => 'Nom Ar',
+            'nom_fr' => 'Nom pays (Français)',
+            'nom_ar' => 'Nom pays (Arabe)',
             'slug' => 'Slug',
-            'publier' => 'Publier',
+            // 'publier' => 'Publier',
             'flag' => 'Flag',
         ];
     }

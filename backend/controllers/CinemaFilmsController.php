@@ -13,6 +13,8 @@ use backend\models\CinemaSalles;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
+
 
 /**
  * CinemaFilmsController implements the CRUD actions for CinemaFilms model.
@@ -73,6 +75,10 @@ class CinemaFilmsController extends Controller
 
         if ($model->load(Yii::$app->request->post())) {
 
+
+            var_dump($model);
+            exit;
+
             //Upload photo
             $file = \yii\web\UploadedFile::getInstance($model, 'path_photo');
             if($file){
@@ -80,7 +86,7 @@ class CinemaFilmsController extends Controller
                 $model->path_photo = UploadedFile::getInstance($model, 'path_photo');
                 $model->path_photo->saveAs('uploads/'.utf8_decode($imageName).'.'.$model->path_photo->extension);
                 //Save the path in the db column
-                $model->photo = 'uploads/'.$imageName.'.'.$model->path_photo->extension;
+                $model->path_photo = 'uploads/'.$imageName.'.'.$model->path_photo->extension;
             }
 
             $model->save();
